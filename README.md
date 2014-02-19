@@ -1,5 +1,3 @@
-project3
+Beam
 ========
-
-Testing commit linking to pivotal
-jahslkgjhaskdgjhaskljgh
+Life's Slideshow
