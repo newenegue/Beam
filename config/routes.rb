@@ -1,4 +1,6 @@
 Beam::Application.routes.draw do
+  resources :searches, only:[:create,:index]
+  root 'searches#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,6 @@
+<h1>Searches#create</h1>
+<% @instagram_results.each do |pic| %>
+	<img src='<%= pic.images.thumbnail.url %>'>
+<% end %>
+<%#= @client.inspect %>
+<%#= params %>
