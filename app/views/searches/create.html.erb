@@ -1,6 +1,6 @@
 <h1>Searches#create</h1>
-<% @instagram_results.each do |pic| %>
-	<img src='<%= pic.images.thumbnail.url %>'>
+<% @instagram_results.each do |result| %>
+	<%#= result.to_json %>
+	<img src='<%= result.images.standard_resolution.url %>'><br />
+	<%= result.caption.text if result.caption %><br><br>
 <% end %>
-<%#= @client.inspect %>
-<%#= params %>
