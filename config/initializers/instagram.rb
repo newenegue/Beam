@@ -6,4 +6,3 @@ Instagram.configure do |config|
 end
 
 CALLBACK_URL = "http://localhost:3000/session/callback"
-# CALLBACK_URL = "http://localhost:3000/"

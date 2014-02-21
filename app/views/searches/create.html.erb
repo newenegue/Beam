@@ -1,6 +1,18 @@
 <h1>Searches#create</h1>
+<%= form_tag searches_path, :method => "post", :class=>"form-inline", :id=>"validateForm" do %>
+	<%=text_field_tag 'search', nil, :placeholder => 'HASHTAG',:class=>"span10"%>
+	<%= button_tag(:type => 'submit', :class => 'btn btn-primary') do %>
+		<i class="icon-search icon-large" style="color:white"></i>
+	<% end %>
+<% end %>
+
+<%= link_to (session[:access_token] ? 'Logged in as ' + @user.username : 'Login with Instagram'), controller: 'sessions', action: 'connect' %><br>
+
 <% @instagram_results.each do |result| %>
 	<%#= result.to_json %>
-	<img src='<%= result.images.standard_resolution.url %>'><br />
-	<%= result.caption.text if result.caption %><br><br>
+	<img src='<%= result.images.low_resolution.url %>'><br />
+	<img src='<%= result.user.profile_picture %>' height='50px' width='50px'> 
+	<strong><%= result.user.username %></strong>
+	<%= result.caption.text if result.caption %><br>
+	Posted <%= distance_of_time_in_words(Time.now, Time.at(result.created_time.to_i),include_seconds: true) %> ago.<br><br>
 <% end %>

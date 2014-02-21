@@ -2,6 +2,7 @@ require 'instagram'
 
 class SearchesController < ApplicationController
   def index
+  	@instagram_results = nil
   end
 
   def create
@@ -12,5 +13,7 @@ class SearchesController < ApplicationController
 	else
 		@instagram_results = Instagram.tag_recent_media(params[:search])
 	end
+	# need to redirect to search results page
+	# redirect_to searches_path
   end
 end

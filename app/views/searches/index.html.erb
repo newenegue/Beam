@@ -7,4 +7,5 @@
 	<% end %>
 <% end %>
 
-<%= link_to 'Login with Instagram', controller: 'sessions', action: 'connect' %>
+<%= link_to (session[:access_token] ? 'You are logged in' : 'Login with Instagram'), controller: 'sessions', action: 'connect' %>
+<!-- NEED TO CLEAN THIS UP -->
