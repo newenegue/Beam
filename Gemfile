@@ -3,11 +3,14 @@ source 'https://rubygems.org'
 # Instagram
 gem 'instagram'
 
+# testing
 group :development do
 	gem 'pry'
 	gem 'rspec'
 end
 
+# foundation
+gem 'foundation-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'

@@ -8,11 +8,23 @@
 
 <%= link_to (session[:access_token] ? 'Logged in as ' + @user.username : 'Login with Instagram'), controller: 'sessions', action: 'connect' %><br>
 
-<% @instagram_results.each do |result| %>
-	<%#= result.to_json %>
-	<img src='<%= result.images.low_resolution.url %>'><br />
-	<img src='<%= result.user.profile_picture %>' height='50px' width='50px'> 
-	<strong><%= result.user.username %></strong>
-	<%= result.caption.text if result.caption %><br>
-	Posted <%= distance_of_time_in_words(Time.now, Time.at(result.created_time.to_i),include_seconds: true) %> ago.<br><br>
-<% end %>
+<div class="scrollbar">
+    <div class="handle"></div>
+</div>
+
+<div class="frame">
+    <ul class="slidee">
+		<% @instagram_results.each do |result| %>
+			<li>
+				<%#= result.to_json %>
+				<img src='<%= result.images.standard_resolution.url %>' class='main_image'>
+				<!-- <div class="orbit-caption"> -->
+					<!-- <img src='<%= result.user.profile_picture %>' height='30px' width='30px'>  -->
+					<!-- <strong><%#= result.user.username %></strong> -->
+					<%#= result.caption.text if result.caption %>
+					<!-- Posted <%#= distance_of_time_in_words(Time.now, Time.at(result.created_time.to_i),include_seconds: true) %> ago. -->
+				<!-- </div> -->
+			</li>
+		<% end %>
+	</ul>
+</div>
