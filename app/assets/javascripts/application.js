@@ -20,6 +20,9 @@
 
 $(function(){ $(document).foundation(); });
 
+// -------------------------------------------------------------
+// Document ready
+// -------------------------------------------------------------
 (function () {
 
 	var $frame = $('.frame');
@@ -33,81 +36,60 @@ $(function(){ $(document).foundation(); });
 		itemNav: 'forceCentered',
 		smart: 1,
 		activateMiddle: 1,
-		activateOn: 'click', // sdlkahsg
+		activateOn: 'click',
 		mouseDragging: 1,
 		touchDragging: 1,
 		releaseSwing: 1,
 		startAt: 0,
 		scrollBar: $wrap.find('.scrollbar'),
 		scrollBy: 0,
-		moveBy: 500, //alkjsdhg
+		moveBy: 500,
 		speed: 150,
 		elasticBounds: 1,
 		easing: 'swing',
 		dragHandle: 1,
 		dynamicHandle: 1,
 		clickBar: 1,
-
+		cycleBy: 'items',
+		cycleInterval: 3000,
 		keyboardNavBy: 'items'
-		// Buttons
-		// prev: $wrap.find('.prev'),
-		// next: $wrap.find('.next')
 	};
-
-	// -------------------------------------------------------------
-	//   Fullscreen one item per page slideshow
-	// -------------------------------------------------------------
-	// var options_fs = {
-	// 	horizontal: 1,
-	// 	itemNav: 'forceCentered',
-	// 	smart: 1,
-	// 	activateMiddle: 1,
-	// 	mouseDragging: 1,
-	// 	touchDragging: 1,
-	// 	releaseSwing: 1,
-	// 	startAt: 0,
-	// 	scrollBar: $wrap.find('.scrollbar'),
-	// 	scrollBy: 0,
-	// 	speed: 150,
-	// 	elasticBounds: 1,
-	// 	easing: 'swing',
-	// 	dragHandle: 1,
-	// 	dynamicHandle: 1,
-	// 	clickBar: 1,
-	// 	// cycleBy: 'items',
-	// 	// cycleInterval: 1000,
-	// 	keyboardNavBy: 'items'
-	// };
 
 	// -------------------------------------------------------------
 	// Create and initialize Sly slideshow
 	// -------------------------------------------------------------
 	var sly = new Sly($frame, options).init();
+	sly.pause();
 
 	// -------------------------------------------------------------
+	// Event listener for changes on the active image
 	// -------------------------------------------------------------
-	sly.on("active", function() {
-		if(screenfull.isFullscreen) {
-			$('.active-fullscreen').removeClass('active-fullscreen');
-			// $('li').addClass('fullscreen');
-			$('.active').addClass('active-fullscreen');
-			// $('.active').removeClass('fullscreen');
-		}
-	});
+	// sly.on("active", function() {
+	//	if(screenfull.isFullscreen) {
+	//		$('.active-fullscreen').removeClass('active-fullscreen');
+	//		$('.active').addClass('active-fullscreen');
+	//	}
+	// });
 
+	// -------------------------------------------------------------
+	// Event handler for fullscreen button
+	// -------------------------------------------------------------
 	$('#fullscreen').click(function () {
 		if (screenfull.enabled) {
 			var frame = $('.frame')[0];
 			screenfull.request(frame);
+			sly.reload();
+			sly.toggle();
 		}
-		sly.reload();
+
 	});
 
+	// -------------------------------------------------------------
+	// Event listener for fullscreen toggling
+	// -------------------------------------------------------------
 	if (screenfull.enabled) {
 		document.addEventListener(screenfull.raw.fullscreenchange, function () {
-			// console.log('Am I fullscreen? ' + (screenfull.isFullscreen ? 'Yes' : 'No'));
 			if(screenfull.isFullscreen){
-				// $('li').addClass('fullscreen');
 				$('.active').addClass('active-fullscreen');
 				$('.active').removeClass('fullscreen');
 				$('.frame').addClass('frame_fs');
@@ -115,9 +97,9 @@ $(function(){ $(document).foundation(); });
 			}
 			else {
 				$('.active').removeClass('active-fullscreen');
-				// $('li').removeClass('fullscreen');
 				$('.frame_fs').addClass('frame');
 				$('.frame').removeClass('frame_fs');
+				sly.toggle();
 			}
 			sly.reload();
 		});

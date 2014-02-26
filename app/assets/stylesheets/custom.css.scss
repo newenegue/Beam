@@ -9,11 +9,13 @@
 	}
 }
 
+// ------------------------------------------------
+// Fullscreen slideshow
+// ------------------------------------------------
 .frame_fs {
 	width: 100%;
 	padding: 0;
 	background-color: rgba(200,200,200,1);
-	// height: 450px;
 	height: 100%;
 	overflow-y: show;
 
@@ -21,7 +23,6 @@
 		margin: 0;
 		padding: 0;
 		height: 100%;
-		// width: 100%;
 		list-style: none;
 
 		li {
@@ -30,15 +31,12 @@
 		 	// ------------------------------------------------
 		 	// needs to be dynamic
 		 	width: 1300px;
-		 	// width: 420px;
 		 	// ------------------------------------------------
 		 	height: 100%;
 		 	position: relative;
 			margin: 0 -20px;
 
 			img {
-				// padding-top: 0;
-				// width: 100px;
 				height: 100%;
 				margin: 0 auto;
 				display: block;
@@ -47,10 +45,6 @@
 			}
 			&.active ~ li {
 			}
-			// &.fullscreen {
-			// 	// display: none;
-			// 	// opacity: 0;
-			// }
 			&.active-fullscreen {
 				// width: 600px;
 				// height: 600px;
@@ -59,12 +53,15 @@
 	}
 }
 
+// ------------------------------------------------
+// Default slideshow
+// ------------------------------------------------
 .frame {
 	width: 100%;
 	padding: 30px 0 30px 0;
 	background-color: rgba(200,200,200,1);
 	height: 480px;
-	line-height: 200px;
+	
 	-webkit-perspective: 800px;
 	-ms-perspective: 800px;
 	perspective: 800px;
@@ -78,7 +75,12 @@
 		padding: 0;
 		height: 100%;
 		list-style: none;
-		li { float: left; margin: 0 5px 0 0; padding: 0; width: 420px; height: 100%; }
+		li {
+			float: left;
+			margin: 0 5px 0 0;
+			padding: 0;
+			width: 420px;
+			height: 100%; }
 	}
 
 	ul {
@@ -95,7 +97,6 @@
 			-webkit-transition: -webkit-transform 300ms ease-out;
 			transition: transform 300ms ease-out;
 			&.active {
-				// border: 2px solid red;
 				-webkit-transform: scale(1);
 				-ms-transform: scale(1);
 				transform: scale(1);
