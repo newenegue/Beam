@@ -1,4 +1,4 @@
-<h1>Searches#create</h1>
+
 <%= form_tag searches_path, :method => "post", :class=>"form-inline", :id=>"validateForm" do %>
 	<%=text_field_tag 'search', nil, :placeholder => 'HASHTAG',:class=>"span10"%>
 	<%= button_tag(:type => 'submit', :class => 'btn btn-primary') do %>
@@ -7,6 +7,8 @@
 <% end %>
 
 <%= link_to (session[:access_token] ? 'Logged in as ' + @user.username : 'Login with Instagram'), controller: 'sessions', action: 'connect' %><br>
+
+<button id="fullscreen">Fullscreen</button>
 
 <div class="scrollbar">
     <div class="handle"></div>
@@ -18,12 +20,12 @@
 			<li>
 				<%#= result.to_json %>
 				<img src='<%= result.images.standard_resolution.url %>' class='main_image'>
-				<!-- <div class="orbit-caption"> -->
-					<!-- <img src='<%= result.user.profile_picture %>' height='30px' width='30px'>  -->
-					<!-- <strong><%#= result.user.username %></strong> -->
+				<!-- <div class="orbit-caption">
+					<img src='<%#= result.user.profile_picture %>' height='30px' width='30px'>
+					<strong><%#= result.user.username %></strong>
 					<%#= result.caption.text if result.caption %>
-					<!-- Posted <%#= distance_of_time_in_words(Time.now, Time.at(result.created_time.to_i),include_seconds: true) %> ago. -->
-				<!-- </div> -->
+					Posted <%#= distance_of_time_in_words(Time.now, Time.at(result.created_time.to_i),include_seconds: true) %> ago.
+				</div> -->
 			</li>
 		<% end %>
 	</ul>
