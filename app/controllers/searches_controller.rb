@@ -10,13 +10,16 @@ class SearchesController < ApplicationController
   	if session[:access_token]
 		client = Instagram.client(:access_token => session[:access_token])
 		@user = client.user
-		@instagram_results = client.tag_recent_media(params[:search], {count: 10}) if params[:search] != nil
-
-		# set initial next url for pagination
-		@next_url = @instagram_results.pagination.next_url
+		if params[:search] != nil
+			@instagram_results = client.tag_recent_media(params[:search], {count: 10})
+			# set initial next url for pagination
+			@next_url = @instagram_results.pagination.next_url
+		end
 	else
-		@instagram_results = Instagram.tag_recent_media(params[:search], {count: 10}) if params[:search] != nil
-		@next_url = @instagram_results.pagination.next_url
+		if params[:search] != nil
+			@instagram_results = Instagram.tag_recent_media(params[:search], {count: 10})
+			@next_url = @instagram_results.pagination.next_url
+		end
 	end
   end
 
