@@ -84,6 +84,13 @@ $(function(){ $(document).foundation(); });
 
 	});
 
+	$('#reload').click(function () {
+		console.log('CLICKED RELOAD');
+		// sly.reload();
+		// sly.add([document.createElement('li'), document.createElement('li')]);
+		// sly.add([document.createElement('li'), document.createElement('li')], 0);
+	});
+
 	// -------------------------------------------------------------
 	// Event listener for fullscreen toggling
 	// -------------------------------------------------------------
@@ -104,6 +111,22 @@ $(function(){ $(document).foundation(); });
 			sly.reload();
 		});
 	}
+
+	// -------------------------------------------------------------
+	// Reload on resize
+	// -------------------------------------------------------------
+	$(window).on('resize', function () {
+		sly.reload();
+	});
+
+	// Add more items when close to the end
+	sly.on('load change', function () {
+		if (this.pos.dest > this.pos.end - 1800) {
+			console.log('Ready to load next page');
+			// populate(10);
+			// this.reload();
+		}
+	});
 }());
 
 
