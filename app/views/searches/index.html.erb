@@ -1,22 +1,24 @@
 
-
 <%= form_tag searches_path, :method => "get" do %>
-	<%=text_field_tag :search, params[:search], :placeholder => 'HASHTAG'%>
+	<%=text_field_tag :search, params[:search], :placeholder => 'Search for a hashtag'%>
 	<%= submit_tag "Search", :name => nil %>
 <% end %>
 
+<!-- Instagram user login -->
 <%= link_to (session[:access_token] ? 'Logged in as ' + @user.username : 'Login with Instagram'), controller: 'sessions', action: 'connect' %><br>
 
-<button id="fullscreen">Fullscreen</button>
-<button id="reload">Reload</button>
+<!-- store next_url for jQuery -->
+<script>
+	var next_url = "<%= @next_url %>";
+</script>
 
-<div class="scrollbar">
-    <div class="handle"></div>
-</div>
-
-PARAMS: <%= params %>
-
+<!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
+	<button id="fullscreen">Fullscreen</button>
+	<button id="reload">Reload</button>
+	<div class="scrollbar">
+	    <div class="handle"></div>
+	</div>
 	<div class="frame">
 	    <ul class="slidee">
 			<% @instagram_results.each do |result| %>
@@ -34,3 +36,4 @@ PARAMS: <%= params %>
 		</ul>
 	</div>
 <% end %>
+
