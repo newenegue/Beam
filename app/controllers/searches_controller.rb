@@ -7,9 +7,9 @@ class SearchesController < ApplicationController
   def index
   	# check is the search field is empty
   	if params[:search] == ""
-  		# flash[:notice] = "You did not search for a hashtag so we search puppies for you!"
-  		# params[:search] = 'puppies'
-  		params[:search] = 'wdiproj3'
+  		flash[:notice] = "You did not search for a hashtag so we search puppies for you!"
+  		params[:search] = 'puppies'
+  		# params[:search] = 'wdiproj3'
   	end
 
   	# when user logs out of instagram we need to check when our app gets refreshed or live update it?
