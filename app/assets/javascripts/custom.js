@@ -2,7 +2,23 @@
 // Document ready
 // -------------------------------------------------------------
 (function () {
+	// $('#reload').click(function () {
+	//	console.log('CLICKED RELOAD');
+	//	// sly.reload();
+	// });
 
+	// -------------------------------------------------------------
+	// Event handler for Instagram logout - does not rely on sly
+	// -------------------------------------------------------------
+	$('#disconnect').on('click', function() {
+		console.log("CLICKING");
+		$('#iframe_disconnect').html('<iframe src="https://instagram.com/accounts/logout/">');
+	});
+
+
+	// -------------------------------------------------------------
+	// Set pry variables
+	// -------------------------------------------------------------
 	var $frame = $('.frame');
 	var $wrap  = $frame.parent();
 
@@ -39,23 +55,7 @@
 	var sly = new Sly($frame, options).init();
 	sly.pause();
 
-	// -------------------------------------------------------------
-	// Event handler for fullscreen button
-	// -------------------------------------------------------------
-	$('#fullscreen').click(function () {
-		if (screenfull.enabled) {
-			var frame = $('.frame')[0];
-			screenfull.request(frame);
-			sly.reload();
-			sly.toggle();
-		}
-
-	});
-
-	$('#reload').click(function () {
-		console.log('CLICKED RELOAD');
-		// sly.reload();
-	});
+	
 
 	// -------------------------------------------------------------
 	// Event listener for fullscreen toggling
@@ -102,13 +102,29 @@
 							sly.add('<li><img src=' + instagram_results.data[i].images.standard_resolution.url + '></li>');
 						}
 						// update next_url
-						next_url = instagram_results.pagination.next_url;	
+						next_url = instagram_results.pagination.next_url;
 					}
 				});
 			}
 		}
 	});
+
+	// -------------------------------------------------------------
+	// Event handler for fullscreen button
+	// -------------------------------------------------------------
+	$('#fullscreen').click(function () {
+		if (screenfull.enabled) {
+			var frame = $('.frame')[0];
+			screenfull.request(frame);
+			sly.reload();
+			sly.toggle();
+		}
+
+	});
+
+
 }());
+
 
 
 

@@ -1,21 +1,21 @@
-
+<!-- hashtag search bar -->
 <%= form_tag searches_path, :method => "get" do %>
 	<%=text_field_tag :search, params[:search], :placeholder => 'Search for a hashtag'%>
 	<%= submit_tag "Search", :name => nil %>
 <% end %>
 
-<!-- Instagram user login -->
-<%= link_to (session[:access_token] ? 'Logged in as ' + @user.username : 'Login with Instagram'), controller: 'sessions', action: 'connect' %><br>
-
-<!-- store next_url for jQuery -->
-<script>
-	var next_url = "<%= @next_url %>";
-</script>
+<!-- Instagram user login/logout -->
+<% if session[:access_token] %>
+	<%= image_tag @user.profile_picture, width: 32, height: 32 %> 
+	<%= @user.username %><br>
+	<%= link_to 'LOG OUT OF INSTAGRAM', {controller: 'sessions', action: 'disconnect'}, id: "disconnect" %><br>
+<% else %>
+	<%= link_to 'Login with Instagram', controller: 'sessions', action: 'connect' %><br>
+<% end %>
 
 <!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
 	<button id="fullscreen">Fullscreen</button>
-	<button id="reload">Reload</button>
 	<div class="scrollbar">
 	    <div class="handle"></div>
 	</div>
@@ -24,8 +24,9 @@
 			<% @instagram_results.each do |result| %>
 				<li>
 					<%#= result.to_json %>
-					<img src='<%= result.images.standard_resolution.url %>' class='main_image'>
-					<!-- <div class="orbit-caption">
+					<%= image_tag result.images.standard_resolution.url %>
+					<!-- <img src='<%#= result.images.standard_resolution.url %>' class='main_image'>
+					<div class="orbit-caption">
 						<img src='<%#= result.user.profile_picture %>' height='30px' width='30px'>
 						<strong><%#= result.user.username %></strong>
 						<%#= result.caption.text if result.caption %>
@@ -36,4 +37,13 @@
 		</ul>
 	</div>
 <% end %>
+
+<!-- hidden Instagram logout container -->
+<div id="iframe_disconnect"></div>
+
+<!-- store next_url for jQuery -->
+<script>
+	var next_url = "<%= @next_url %>";
+</script>
+
 
