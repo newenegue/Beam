@@ -4,9 +4,9 @@ source 'https://rubygems.org'
 gem 'instagram'
 
 # testing
-group :development do
+group :development, :test do
 	gem 'pry'
-	gem 'rspec'
+	gem 'rspec-rails'
 end
 
 # foundation
