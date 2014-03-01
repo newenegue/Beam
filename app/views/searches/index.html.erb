@@ -1,21 +1,26 @@
 <!-- hashtag search bar -->
 <%= form_tag searches_path, :method => "get" do %>
-	<%=text_field_tag :search, params[:search], :placeholder => 'Search for a hashtag'%>
+	<%=text_field_tag :search, params[:search], :placeholder => "Search for a hashtag"%>
 	<%= submit_tag "Search", :name => nil %>
 <% end %>
 
 <!-- Instagram user login/logout -->
 <% if session[:access_token] %>
-	<%= image_tag @user.profile_picture, width: 32, height: 32 %> 
+	<%= image_tag @user.profile_picture, id: "avatar" %> 
 	<%= @user.username %><br>
-	<%= link_to 'LOG OUT OF INSTAGRAM', {controller: 'sessions', action: 'disconnect'}, id: "disconnect" %><br>
+	<%= link_to "LOG OUT OF INSTAGRAM", {controller: "sessions", action: "disconnect"}, id: "disconnect" %><br>
 <% else %>
-	<%= link_to 'Login with Instagram', controller: 'sessions', action: 'connect' %><br>
+	<%= link_to "Login with Instagram", controller: "sessions", action: "connect" %><br>
 <% end %>
+
+<!-- 
+INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app needs to logout in the app and set session[:access_token] to nil
+-->
 
 <!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
 	<button id="fullscreen">Fullscreen</button>
+	<button id="fullscreen_caption">Fullscreen w/captions</button>
 	<div class="scrollbar">
 	    <div class="handle"></div>
 	</div>
@@ -24,14 +29,23 @@
 			<% @instagram_results.each do |result| %>
 				<li>
 					<%#= result.to_json %>
+					<div class="image_info">
+						<div class="image_header">
+							<%= image_tag result.user.profile_picture, id: "avatar" %>
+							<cite><a href="http://instagram.com/<%= result.user.username %>" target="_blank"><%= result.user.username %></a></cite>
+							<%= distance_of_time_in_words(Time.now, Time.at(result.created_time.to_i),include_seconds: true) %> ago<br>
+							<% if result.videos %>
+								<a href="<%= result.videos.standard_resolution.url %>" target="_blank">Play Video</a>
+							<% end %>
+							<div class="add_to_album">Add</div>
+
+							
+						</div>
+						<div class="image_footer">
+							<%= truncate(result.caption.text, length: 100) if result.caption %>
+						</div>
+					</div>
 					<%= image_tag result.images.standard_resolution.url %>
-					<!-- <img src='<%#= result.images.standard_resolution.url %>' class='main_image'>
-					<div class="orbit-caption">
-						<img src='<%#= result.user.profile_picture %>' height='30px' width='30px'>
-						<strong><%#= result.user.username %></strong>
-						<%#= result.caption.text if result.caption %>
-						Posted <%#= distance_of_time_in_words(Time.now, Time.at(result.created_time.to_i),include_seconds: true) %> ago.
-					</div> -->
 				</li>
 			<% end %>
 		</ul>
@@ -45,5 +59,6 @@
 <script>
 	var next_url = "<%= @next_url %>";
 </script>
+
 
 

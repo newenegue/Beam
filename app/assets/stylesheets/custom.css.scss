@@ -1,3 +1,9 @@
+img#avatar {
+	border-radius: 100px;
+	width: 32px;
+	height: 32px;
+}
+
 // ------------------------------------------------
 // Instagram logout iframe
 // ------------------------------------------------
@@ -14,7 +20,7 @@
 // ------------------------------------------------
 .scrollbar {
 	width: 100%;
-	height: 10px;
+	height: 2px;
 
 	.handle {
 		width: 100px; /* overriden if dynamicHandle: 1 */
@@ -44,11 +50,16 @@
 		 	margin: 0 5px 0 0;
 		 	// ------------------------------------------------
 		 	// needs to be dynamic with media queries
-		 	width: 1300px;
+		 	width: 2500px;
+		 	// width: 1300px;
 		 	// ------------------------------------------------
 		 	height: 100%;
 		 	position: relative;
 			margin: 0 -20px;
+
+			.image_info {
+				display: none;
+			}
 
 			img {
 				height: 100%;
@@ -65,6 +76,51 @@
 			}
 		 }
 	}
+}
+
+.caption_fs {
+	.slidee{
+		li {
+			img{
+				&#avatar {
+					float: left;
+					margin: 5px 20px 10px 10px;
+					width: 40px;
+					height: 40px;
+					left: 41%;
+					position: absolute;
+				}
+			}
+			.image_info {
+				height: 100%;
+				width: 100%;
+				display: block;
+				position: absolute;
+				color: white;
+				.image_header {
+					text-align: center;
+					height: 4em;
+					padding: 5px 10px 5px 10px;
+					width: 100%;
+					top: 0;
+					left: 0;
+					background-color: rgba(0,0,0,0.5);
+				}
+
+				.image_footer {
+					text-align: center;
+					height: 2em;
+					padding: 5px 10px 5px 10px;
+					width: 100%;
+					position: absolute;
+					bottom: 0;
+					right: 0;
+					background-color: rgba(0,0,0,0.5);
+				}
+			}
+		}
+	}
+	
 }
 
 // ------------------------------------------------
@@ -89,20 +145,16 @@
 		padding: 0;
 		height: 100%;
 		list-style: none;
+		-webkit-transform-style: preserve-3d;
+		-ms-transform-style: preserve-3d;
+		transform-style: preserve-3d;
 		li {
+
 			float: left;
 			margin: 0 5px 0 0;
 			padding: 0;
 			width: 420px;
-			height: 100%; }
-	}
-
-	ul {
-		-webkit-transform-style: preserve-3d;
-		-ms-transform-style: preserve-3d;
-		transform-style: preserve-3d;
-
-		li {
+			height: 100%;
 			position: relative;
 			margin: 0 -20px;
 			-webkit-transform: rotateY(60deg) scale(0.9);
@@ -110,18 +162,83 @@
 			transform: rotateY(60deg) scale(0.9);
 			-webkit-transition: -webkit-transform 300ms ease-out;
 			transition: transform 300ms ease-out;
+			img {
+				border-radius: 3px;
+				box-shadow: 3px 3px 20px rgba(0,0,0,0.6);
+			}
+			.image_info {
+				transition: 0.2s;
+				// background-color: rgba(0,0,0,0.5);
+				height: 420px;
+				width: 420px;
+				position: absolute;
+				opacity: 0;
+				border-radius: 3px;
+				color: white;
+				.image_header {
+					border-top-left-radius: 3px;
+					border-top-right-radius: 3px;
+					padding: 5px 10px 5px 10px;
+					width: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					background-color: rgba(0,0,0,0.5);
+				}
+
+				.image_footer {
+					padding: 5px 10px 5px 10px;
+					border-bottom-left-radius: 3px;
+					border-bottom-right-radius: 3px;
+					width: 100%;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					background-color: rgba(0,0,0,0.5);
+				}
+			}
 			&.active {
 				width: 480px;
 				margin-top: -30px;
 				-webkit-transform: scale(1);
 				-ms-transform: scale(1);
 				transform: scale(1);
+				img {
+					border-radius: 0;
+				}
+				.image_info {
+					// background-color: rgba(0,0,0,0.2);
+					height: 480px;
+					width: 480px;
+					opacity: 0;
+					border-radius: 0;
+
+					.image_header {
+						border-radius: 0;
+					}
+
+					.image_footer {
+						border-radius: 0;
+					}
+				}
 			}
 			&.active ~ li {
 				-webkit-transform: rotateY(-60deg) scale(0.9);
 				-ms-transform: rotateY(-60deg) scale(0.9);
 				transform: rotateY(-60deg) scale(0.9);
 			}
+			.image_info:hover {
+				opacity: 1;
+			}
+			
 		}
 	}
 }
+
+.add_to_album {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 5px;
+}
+
