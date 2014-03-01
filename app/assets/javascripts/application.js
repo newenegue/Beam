@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require sly
 //= require screenfull
+//= require timeago
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
