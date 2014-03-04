@@ -1,11 +1,34 @@
 // -------------------------------------------------------------
 // Document ready
 // -------------------------------------------------------------
+
 (function () {
-	// $('#reload').click(function () {
-	//	console.log('CLICKED RELOAD');
-	//	// sly.reload();
-	// });
+
+	// -------------------------------------------------------------
+	// Check if user is logged into Instagram
+	// -------------------------------------------------------------
+	var check_login = null;
+	var logged_in = false;
+	$.ajax({
+		url: "http://instagram.com/",
+		type: 'get',
+		dataType: 'html',
+		async: false,
+		success: function(data) {
+			check_login = data;
+		}
+	});
+	if(check_login.indexOf("not-logged-in") >= 0) {
+		// set session[:access_token] = nil
+		// set session[:client] = nil
+		console.log("NOT LOGGED INTO INSTAGRAM");
+		logged_in = false;
+
+	}
+	else {
+		console.log("YOU ARE LOGGED INTO INSTAGRAM");
+		logged_in = true;
+	}
 
 	// -------------------------------------------------------------
 	// Event handler for Instagram logout - does not rely on sly
@@ -62,6 +85,7 @@
 	sly.pause();
 	sly.reload();
 	var caption_fs = false;
+	var cap_length = 100;
 	
 
 	// -------------------------------------------------------------
@@ -82,6 +106,7 @@
 				$('.frame').removeClass('frame_fs');
 				$('.frame').removeClass('caption_fs');
 				caption_fs = false;
+				cap_length = 100;
 				sly.toggle();
 				sly.set('speed', 250);
 			}
@@ -114,16 +139,24 @@
 						// add images to sly
 						for(var i = 0; i < instagram_results.data.length; i++) {
 							result = instagram_results.data[i];
-							var time_ago = jQuery.timeago(result.created_time * 1000);
+							var time_ago = $.timeago(result.created_time * 1000);
 							if(result.caption){
-								var caption = jQuery.trim(result.caption.text).substring(0, 100).trim(this);
+								var caption = $.trim(result.caption.text).substring(0, cap_length).trim(this);
 
-								if(caption.length == 100)
+								if(caption.length == cap_length)
 									caption = caption  + "...";
-								sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' </div><div class="image_footer">'+ caption +'</div></div><img src=' + result.images.standard_resolution.url + '></li>');
+								if(result.videos){
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer">'+ caption +'</div></div><img src=' + result.images.standard_resolution.url + '></li>');
+								}
+								else {
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' </div><div class="image_footer">'+ caption +'</div></div><img src=' + result.images.standard_resolution.url + '></li>');
+								}
 							}
 							else{
-								sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' </div><div class="image_footer"></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+								if(result.videos)
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+								else
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' </div><div class="image_footer"></div></div><img src=' + result.images.standard_resolution.url + '></li>');
 							}
 							
 						}
@@ -141,18 +174,22 @@
 	$('#fullscreen').click(function () {
 		if (screenfull.enabled) {
 			var frame = $('.frame')[0];
-			screenfull.request(frame);
 			sly.reload();
+			screenfull.request(frame);
 			sly.toggle();
 		}
 	});
 
+	// -------------------------------------------------------------
+	// Event handler for fullscreen button with captions
+	// -------------------------------------------------------------
 	$('#fullscreen_caption').click(function () {
 		if (screenfull.enabled) {
 			caption_fs = true;
+			cap_length = 200;
 			var frame = $('.frame')[0];
-			screenfull.request(frame);
 			sly.reload();
+			screenfull.request(frame);
 			sly.toggle();
 		}
 	});

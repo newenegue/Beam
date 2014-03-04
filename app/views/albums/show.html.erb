@@ -1,0 +1,12 @@
+<h1><%= @album.title %></h1><br>
+<% if @album.image_ids != [] %>
+	<ul>
+		<% @album.image_ids.each do |image| %>
+			<li><%= image %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<br>
+
+<%= link_to "Edit album", edit_album_path(@album) %>
