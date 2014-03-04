@@ -18,16 +18,18 @@
 			check_login = data;
 		}
 	});
-	if(check_login.indexOf("not-logged-in") >= 0) {
-		// set session[:access_token] = nil
-		// set session[:client] = nil
-		console.log("NOT LOGGED INTO INSTAGRAM");
-		logged_in = false;
+	if(check_login){
+		if(check_login.indexOf("not-logged-in") >= 0) {
+			// set session[:access_token] = nil
+			// set session[:client] = nil
+			console.log("NOT LOGGED INTO INSTAGRAM");
+			logged_in = false;
 
-	}
-	else {
-		console.log("YOU ARE LOGGED INTO INSTAGRAM");
-		logged_in = true;
+		}
+		else {
+			console.log("YOU ARE LOGGED INTO INSTAGRAM");
+			logged_in = true;
+		}
 	}
 
 	// -------------------------------------------------------------
@@ -42,8 +44,21 @@
 	// Add image to beam album
 	// -------------------------------------------------------------
 	$('.add_to_album').on('click', function() {
-		console.log($(this).data().imageIds);
-		console.log("Add image to album!");
+
+		// send data to add_image controller action
+		$.ajax({
+			url: "http://localhost:3000/albums/add_image",
+			type: "post",
+			dataType: 'html',
+			async: false,
+			data: {
+				image_id: $(this).data().imageIds,
+				album: default_album
+			},
+			success: function(data) {
+				console.log("Add "+ $(this).data().imageIds + " image to " + default_album + " album!");
+			}
+		});
 	});
 
 	// -------------------------------------------------------------

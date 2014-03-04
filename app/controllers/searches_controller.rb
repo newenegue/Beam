@@ -8,29 +8,50 @@ class SearchesController < ApplicationController
   	# check is the search field is empty
   	if params[:search] == ""
   		flash[:notice] = "You did not search for a hashtag so we search puppies for you!"
-  		params[:search] = 'puppies'
-  		# params[:search] = 'wdiproj3'
+  		params[:search] = "puppies"
   	end
+
+    # binding.pry
 
   	# when user logs out of instagram we need to check when our app gets refreshed or live update it?
   	if session[:access_token]
-  		# double check search params
-  		if params[:search] != nil
-  			# use new client to search
+  		if params[:search]
         if current_user.albums.find_by(title: params[:search]) == nil
           @default_album = current_user.albums.new(title: params[:search])
           if !@default_album.save
-            flash[:error] = "There was a problem create the album #{params[:search]}"
+            flash[:error] = "There was a problem creating the album #{params[:search]}"
           end
+        else
+          @default_album = current_user.albums.find_by(title: params[:search])
         end
-  			@instagram_results = session[:client].tag_recent_media(params[:search], {count: 10})
-  			# set initial next url for pagination
+
+        # search username 
+        if params[:search].index("@")
+          user_id = session[:client].user_search(params[:search][1..-1])[0].id
+          @instagram_results = session[:client].user_recent_media(user_id, {count: 10})
+        # search hashtag
+        else
+          @instagram_results = session[:client].tag_recent_media(params[:search], {count: 10})
+          # @total_results = session[:client].tag(params[:search])
+        end
+  			
+        
   			@next_url = @instagram_results.pagination.next_url
   		end
   	else
   		# for visitors
-  		if params[:search] != nil
-  			@instagram_results = Instagram.tag_recent_media(params[:search], {count: 10})
+  		if params[:search]
+        # search username 
+        if params[:search].index("@")
+          user_id = session[:client].user_search(params[:search][1..-1])[0].id
+          @instagram_results = Instagram.user_recent_media(user_id, {count: 10})
+        # search hashtag
+        else
+          @instagram_results = Instagram.tag_recent_media(params[:search], {count: 10})
+          # @total_results = session[:client].tag(params[:search])
+        end
+  			
+        # @total_results = Instagram.tag(params[:search])
   			@next_url = @instagram_results.pagination.next_url
   		end
   	end

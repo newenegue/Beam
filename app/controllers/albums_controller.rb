@@ -39,8 +39,21 @@ class AlbumsController < ApplicationController
     set_album
   end
 
-  def add_to_album
-    
+  # add an image to an album
+  # data sent from ajax call
+  def add_image
+    album_title = params[:album]
+    image_id = params[:image_id]
+    album = current_user.albums.find_by(id: album_title)
+    if album.image_ids.include? image_id
+      # remove it
+      album.image_ids -= [image_id]
+    else
+      # add it
+      album.image_ids += [image_id]
+    end
+    album.save
+    render nothing: true
   end
 
 private

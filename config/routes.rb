@@ -5,4 +5,5 @@ Beam::Application.routes.draw do
   resources :users, only: [:create]
   root 'searches#index'
   get 'session/:action', :to => 'sessions'
+  post 'albums/add_image', :to => 'albums#add_image'
 end

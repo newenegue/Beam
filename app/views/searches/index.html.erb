@@ -2,7 +2,7 @@
 
 <!-- hashtag search bar -->
 <%= form_tag searches_path, :method => "get" do %>
-	<%=text_field_tag :search, params[:search], :placeholder => "Search for a hashtag"%>
+	<%=text_field_tag :search, params[:search], :placeholder => "Search a hashtag or @username"%>
 	<%= submit_tag "Search", :name => nil %>
 <% end %>
 
@@ -20,7 +20,6 @@
 	need to handle bad requests for tags that are not viewable and revoked access separately
 INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app needs to logout in the app and set session[:access_token] to nil
 -->
-
 
 <!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
@@ -42,11 +41,7 @@ INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app nee
 							<% if result.videos %>
 								<a href="<%= result.videos.standard_resolution.url %>" target="_blank">Play Video</a>
 							<% end %>
-							<%#= link_to 'Add', {controller: "albums", action: "add_to_album"} %>
-							<!-- @default_album.add_to_album(result.id) -->
 							<div class="add_to_album" data-image-ids="<%= result.id %>">Add</div>
-
-							
 						</div>
 						<div class="image_footer">
 							<%= truncate(result.caption.text, length: 100) if result.caption %>
@@ -65,6 +60,7 @@ INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app nee
 <!-- store next_url for jQuery -->
 <script>
 	var next_url = "<%= @next_url %>";
+	var default_album = "<%= @default_album.id if @default_album %>";
 </script>
 
 
