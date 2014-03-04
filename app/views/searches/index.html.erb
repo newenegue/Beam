@@ -42,10 +42,9 @@ INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app nee
 							<% if result.videos %>
 								<a href="<%= result.videos.standard_resolution.url %>" target="_blank">Play Video</a>
 							<% end %>
-							<%= result.id %>
 							<%#= link_to 'Add', {controller: "albums", action: "add_to_album"} %>
 							<!-- @default_album.add_to_album(result.id) -->
-							<div class="add_to_album">Add</div>
+							<div class="add_to_album" data-image-ids="<%= result.id %>">Add</div>
 
 							
 						</div>

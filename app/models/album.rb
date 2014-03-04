@@ -4,7 +4,7 @@ class Album < ActiveRecord::Base
   validates :title, presence: true
 
   def add_to_album(id)
-  	self.image_ids << id
-  	self.save 
+  	self.image_ids += [id]
+  	self.save
   end
 end
