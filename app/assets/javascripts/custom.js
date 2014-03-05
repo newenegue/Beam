@@ -3,7 +3,6 @@
 // -------------------------------------------------------------
 
 (function () {
-
 	// -------------------------------------------------------------
 	// Check if user is logged into Instagram
 	// -------------------------------------------------------------
@@ -18,16 +17,18 @@
 			check_login = data;
 		}
 	});
-	if(check_login.indexOf("not-logged-in") >= 0) {
-		// set session[:access_token] = nil
-		// set session[:client] = nil
-		console.log("NOT LOGGED INTO INSTAGRAM");
-		logged_in = false;
+	if(check_login) {
+		if(check_login.indexOf("not-logged-in") >= 0) {
+			// set session[:access_token] = nil
+			// set session[:client] = nil
+			console.log("NOT LOGGED INTO INSTAGRAM");
+			logged_in = false;
 
-	}
-	else {
-		console.log("YOU ARE LOGGED INTO INSTAGRAM");
-		logged_in = true;
+		}
+		else {
+			console.log("YOU ARE LOGGED INTO INSTAGRAM");
+			logged_in = true;
+		}
 	}
 
 	// -------------------------------------------------------------

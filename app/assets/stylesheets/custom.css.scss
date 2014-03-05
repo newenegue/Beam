@@ -1,8 +1,117 @@
+.nav {
+	
+}
+
+.backgclr {
+  background-color: #fec56d;
+}
+
+/*.title {
+	height: 40vh;
+}*/
+.header {
+  font-size: 80px;
+/*  padding-top: 90px;*/
+  font-family: Bebas, sans-serif; 
+  text-align: center;
+  color: #f26d68;
+}
+
+.mainsearch {
+/*  height: 75vh;*/ /*controling placement of slider*/
+  width: 500px;
+  margin: 0 auto;
+}
+
+.searchbutton {
+	border:		2px solid #f15d5b;
+	padding:		10px 20px;
+	font-size:		14px;
+	background-color:	#f15d5b;
+	font-weight:		bold;
+	color:			#2d525d;
+}
+
+.searchbtn {
+	width: 100px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+#ctrbtns {
+	width: 420px;
+	margin: 0 auto;
+
+}
+
+#fullscreen {
+	background-color: #f15d5b;
+	margin-top: 20px;
+	width: 200px;
+	height: 50px;
+	padding: 10px 10px;
+	margin: 0 auto;
+}
+
+#fullscreen_caption {
+	background-color: #f15d5b;
+	width: 200px;
+	height: 50px;
+	padding: 10px 10px;
+	margin: 0 auto;
+
+}
+.login {
+	border: 1px solid green;
+	width: 100px;
+	margin: 0 auto;
+	position: 20vh;
+	text-align: center;
+}
+
+/*.mainslide {
+	background-color: blue;
+}*/
+
+
+/*Styles Beam dropdown and Albums link and hides them until search occurs*/
+
+/*.fakeslider {
+  width: 100%;
+  display: none;
+  margin: 0 auto;
+}
+
+.nav {
+  width: 100%;
+  display: none;
+  margin: 0 auto;
+}*/
+
+
+
+
+
+
+
+
+
 img#avatar {
 	border-radius: 100px;
 	width: 32px;
 	height: 32px;
 }
+
+
+
+
+
+
+
+
+
+
 
 // ------------------------------------------------
 // Instagram logout iframe
