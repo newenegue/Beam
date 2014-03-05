@@ -41,7 +41,10 @@
 	// -------------------------------------------------------------
 	// Add image to beam album
 	// -------------------------------------------------------------
-	$('.add_to_album').on('click', function() {
+	// default to more recent album
+	var album_id;
+
+	$(document.body).on('click', '.add_to_album' ,function(){
 		// send data to add_image controller action
 		$.ajax({
 			url: "http://localhost:3000/albums/add_image",
@@ -54,6 +57,11 @@
 				console.log("Add image to " + album_id + " album!");
 			}
 		});
+	});
+
+	// drop down album selector
+	$("#select_album").change( function() {
+		album_id = $(this).find("option:selected").attr("value");
 	});
 
 	// -------------------------------------------------------------
@@ -136,8 +144,6 @@
 	// Infinite scrolling for image slideshow pagination
 	// -------------------------------------------------------------
 	sly.on('load change', function () {
-
-
 		// check for sly position
 		if (this.pos.dest > this.pos.end - 1800) {
 			// check is there is a next_url

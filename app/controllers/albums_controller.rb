@@ -42,10 +42,18 @@ class AlbumsController < ApplicationController
   # add an image to an album
   # data sent from ajax call
   def add_image
-    album_id = params[:album_id]
     image_id = params[:image_id]
-    # binding.pry
-    album = current_user.albums.find_by(id: album_id)
+    album_id = params[:album_id]
+    if album_id
+      album = current_user.albums.find_by(id: album_id)
+    else
+      # create new untitled album if it doesn't exist
+      if current_user.albums.find_by(title: 'untitled')
+        album = current_user.albums.find_by(title: 'untitled')
+      else
+        album = current_user.albums.create(title: 'untitled')
+      end
+    end
     if album.image_ids.include? image_id
       # remove it
       album.image_ids -= [image_id]
@@ -53,6 +61,7 @@ class AlbumsController < ApplicationController
       # add it
       album.image_ids += [image_id]
     end
+    # binding.pry
     album.save
     render nothing: true
   end

@@ -11,20 +11,9 @@ class SearchesController < ApplicationController
   		params[:search] = "puppies"
   	end
 
-    # binding.pry
-
   	# when user logs out of instagram we need to check when our app gets refreshed or live update it?
   	if session[:access_token]
   		if params[:search]
-        if current_user.albums.find_by(title: params[:search]) == nil
-          @default_album = current_user.albums.new(title: params[:search])
-          if !@default_album.save
-            flash[:error] = "There was a problem creating the album #{params[:search]}"
-          end
-        else
-          @default_album = current_user.albums.find_by(title: params[:search])
-        end
-
         # search username 
         if params[:search].index("@")
           user_id = session[:client].user_search(params[:search][1..-1])[0].id
@@ -32,10 +21,7 @@ class SearchesController < ApplicationController
         # search hashtag
         else
           @instagram_results = session[:client].tag_recent_media(params[:search], {count: 10})
-          # @total_results = session[:client].tag(params[:search])
         end
-  			
-        
   			@next_url = @instagram_results.pagination.next_url
   		end
   	else
@@ -48,10 +34,7 @@ class SearchesController < ApplicationController
         # search hashtag
         else
           @instagram_results = Instagram.tag_recent_media(params[:search], {count: 10})
-          # @total_results = session[:client].tag(params[:search])
         end
-  			
-        # @total_results = Instagram.tag(params[:search])
   			@next_url = @instagram_results.pagination.next_url
   		end
   	end

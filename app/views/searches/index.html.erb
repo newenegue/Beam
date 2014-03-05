@@ -23,6 +23,13 @@ INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app nee
 
 <!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
+<!-- NEED TO RELOAD THIS ON IMAGE ADD!!! -->
+	<select id="select_album">
+		<option>Choose an album</option>
+		<%= current_user.albums.each do |album| %>
+		<option value="<%= album.id %>"><%= album.title %></option>
+		<% end %>
+	</select>
 	<button id="fullscreen">Fullscreen</button>
 	<button id="fullscreen_caption">Fullscreen w/captions</button>
 	<div class="scrollbar">
@@ -60,7 +67,6 @@ INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app nee
 <!-- store next_url for jQuery -->
 <script>
 	var next_url = "<%= @next_url %>";
-	var album_id = "<%= @default_album.id if @default_album %>";
 </script>
 
 
