@@ -42,9 +42,10 @@ class AlbumsController < ApplicationController
   # add an image to an album
   # data sent from ajax call
   def add_image
-    album_title = params[:album]
+    album_id = params[:album_id]
     image_id = params[:image_id]
-    album = current_user.albums.find_by(id: album_title)
+    # binding.pry
+    album = current_user.albums.find_by(id: album_id)
     if album.image_ids.include? image_id
       # remove it
       album.image_ids -= [image_id]

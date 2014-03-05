@@ -24,7 +24,6 @@
 			// set session[:client] = nil
 			console.log("NOT LOGGED INTO INSTAGRAM");
 			logged_in = false;
-
 		}
 		else {
 			console.log("YOU ARE LOGGED INTO INSTAGRAM");
@@ -36,7 +35,6 @@
 	// Event handler for Instagram logout - does not rely on sly
 	// -------------------------------------------------------------
 	$('#disconnect').on('click', function() {
-		// console.log("CLICKING");
 		$('#iframe_disconnect').html('<iframe src="https://instagram.com/accounts/logout/">');
 	});
 
@@ -44,19 +42,16 @@
 	// Add image to beam album
 	// -------------------------------------------------------------
 	$('.add_to_album').on('click', function() {
-
 		// send data to add_image controller action
 		$.ajax({
 			url: "http://localhost:3000/albums/add_image",
 			type: "post",
-			dataType: 'html',
-			async: false,
 			data: {
 				image_id: $(this).data().imageIds,
-				album: default_album
+				album_id: album_id
 			},
 			success: function(data) {
-				console.log("Add "+ $(this).data().imageIds + " image to " + default_album + " album!");
+				console.log("Add image to " + album_id + " album!");
 			}
 		});
 	});
