@@ -59,14 +59,23 @@ class AlbumsController < ApplicationController
     # then SAVE album and image
 
 
-
+    binding.pry
     params.delete("controller")
     params.delete("action")
-    new_hash = params.symbolize_keys
     binding.pry
+    # new_hash = params.symbolize_keys
+    # binding.pry
     # what will happen to album id params????
     # image_id = params[:image_id]
     album_id = params[:album_id]
+    params.delete[:album_id]
+    binding.pry
+    instagram_id = params[:instagram_id]
+    params.delete[:instagram_id]
+    binding.pry
+    new_hash = params.symbolize_keys
+    binding.pry
+
     if album_id == "untitled" || !album_id
       binding.pry
       if current_user.albums.find_by(title: 'untitled')
@@ -76,7 +85,7 @@ class AlbumsController < ApplicationController
       else
         binding.pry
         # album = current_user.albums.create(title: 'untitled', images: [])
-        album = current_user.albums.new(title: 'untitled', images: [])
+        album = current_user.albums.new(title: 'untitled')
         binding.pry
       end
     else
@@ -93,6 +102,9 @@ class AlbumsController < ApplicationController
     #     album = current_user.albums.create(title: 'untitled')
     #   end
     # end
+
+    # album.images.include? image object
+
     binding.pry
     if album.images.include? new_hash
     # if album.image_ids.include? image_id
