@@ -1,12 +1,21 @@
+<a href="#openModal">Open Modal</a>
+
+<div id="openModal" class="modalDialog">
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+		<%= link_to "Login with Instagram", controller: "sessions", action: "connect", class: "login" %>
+	</div>
+</div>
+
 <nav class="nav">
 	<!-- Instagram user login/logout -->
 	<% if session[:access_token] %>
-		<%= image_tag current_user.avatar, id: "avatar" %> 
-		<%= current_user.username %><!-- <br> -->
-		<%= link_to "LOG OUT OF INSTAGRAM", {controller: "sessions", action: "disconnect"}, id: "disconnect" %><!-- <br> -->
-		<%= link_to "My Albums", albums_path %><!-- <br> -->
+		<div class="avatar"><%= image_tag current_user.avatar, id: "avatar" %>
+		<%= current_user.username %>
+		<div class="signin"><%= link_to "LOG OUT OF INSTAGRAM", {controller: "sessions", action: "disconnect"}, id: "disconnect", class: "login" %></div><!-- <br> -->
+		<%= link_to "My Albums", albums_path, class: "albums" %><!-- <br> -->
 	<% else %>
-		<div class="login"><%= link_to "Login with Instagram", controller: "sessions", action: "connect" %></div><!-- <br> -->
+		<div class="signin"><%= link_to "Login with Instagram", controller: "sessions", action: "connect", class: "login" %></div><!-- <br> -->
 	<% end %>
 	<header class="title"> 
     <p class="header">Beam</p>
@@ -26,8 +35,9 @@
 
 
 	<!-- Display images from search result -->
+<div class="fakeslider">
 	<% if @instagram_results != [] && @instagram_results != nil %>
-	
+
 		<div class="scrollbar">
 		    <div class="handle"></div>
 		</div>
@@ -60,17 +70,40 @@
 			<% end %>
 		</ul>
 	</div>
-<% end %><br><br>
+
+<% end %>
+
+<br><br>
 <div id="ctrbtns">
-		<button id="fullscreen">Fullscreen</button>
-		<button id="fullscreen_caption">Fullscreen w/captions</button>
+		<button class="fs" id="fullscreen">Fullscreen</button>
+		<button class="fs" id="fullscreen_caption">Fullscreen w/captions</button>
 	</div><br /><br />
 <!-- hidden Instagram logout container -->
 <div id="iframe_disconnect"></div>
-
+</div>
 <!-- store next_url for jQuery -->
 <script>
 	var next_url = "<%= @next_url %>";
+  
+  // make search bar slideUp
+  $( document ).ready(function() {
+    $(".searchbtn").submit(function(event) {
+      event.preventDefault();
+      console.log("function called")
+      $(".title").slideUp(400, showAppear);
+    });
+
+    // allows slideshow to appear
+    function showAppear() {
+      console.log("working it!")
+      $(".fakeslider, .fs").fadeIn(300, null);
+      // $(".nav").fadeIn(300, null);
+    }
+  });
+  $( document ).ready(function() {
+  $(".fakeslider").fullScreen(true);
+  $(".fakeslider").fullScreen(false);
+  });
 </script>
 
 
