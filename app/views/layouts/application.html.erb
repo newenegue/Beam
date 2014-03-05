@@ -15,6 +15,11 @@
   <body>
   	<h1>Beam</h1>
 
+    <%= form_tag searches_path, :method => "get" do %>
+      <%=text_field_tag :search, params[:search], :placeholder => "Search a hashtag or @username"%>
+      <%= submit_tag "Search", :name => nil %>
+    <% end %>
+
     <%= flash[:error] %>
     <%= flash[:notice] %>
 

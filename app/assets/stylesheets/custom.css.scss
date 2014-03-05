@@ -4,6 +4,18 @@ img#avatar {
 	height: 32px;
 }
 
+.thumb_container {
+	height: 150px;
+	width: 800px;
+	border: 5px solid black;
+	// background-color: red;
+}
+
+.thumb {
+	width: 150px;
+	height: 100%;
+}
+
 // ------------------------------------------------
 // Instagram logout iframe
 // ------------------------------------------------

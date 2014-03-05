@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305190456) do
+ActiveRecord::Schema.define(version: 20140305225155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,15 @@ ActiveRecord::Schema.define(version: 20140305190456) do
 
   create_table "images", force: true do |t|
     t.string   "instagram_id"
-    t.hstore   "image_info"
     t.integer  "album_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ig_url"
+    t.string   "ig_caption"
+    t.string   "ig_user"
+    t.string   "ig_user_avatar"
+    t.string   "ig_video_url"
+    t.string   "ig_created_time"
   end
 
   add_index "images", ["album_id"], name: "index_images_on_album_id", using: :btree

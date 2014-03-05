@@ -1,12 +1,38 @@
 <h1><%= @album.title %></h1><br>
+
 <% if @album.images != [] %>
-	<ul>
-		<% @album.images.each do |image| %>
-			<li><%= image %></li>
-		<% end %>
-	</ul>
+	<button id="fullscreen">Fullscreen</button>
+	<button id="fullscreen_caption">Fullscreen w/captions</button>
+	<div class="scrollbar">
+	    <div class="handle"></div>
+	</div>
+	<div class="frame">
+		<ul class="slidee">
+			<% @album.images.each do |image| %>
+				<li>
+					<div class="image_info">
+						<div class="image_header">
+							<%= image_tag image.ig_user_avatar, id: "avatar" %>
+							<cite><a href="http://instagram.com/<%= image.ig_user %>" target="_blank"><%= image.ig_user %></a></cite>
+							<%= distance_of_time_in_words(Time.now, Time.at(image.ig_created_time.to_i),include_seconds: true) %> ago<br>
+							<% if image.ig_video_url != "" %>
+								<a href="<%= image.ig_video_url %>" target="_blank">Play Video</a>
+							<% end %>
+						</div>
+						<div class="image_footer">
+							<%= truncate(image.ig_caption , length: 100) if image.ig_caption %>
+						</div>
+					</div>
+					<%= image_tag image.ig_url %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
 <% end %>
 
-<br>
-
 <%= link_to "Edit album", edit_album_path(@album) %>
+
+
+<script>
+	var next_url = "";
+</script>

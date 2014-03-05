@@ -45,16 +45,23 @@ class AlbumsController < ApplicationController
   def add_image
 
     # clean up params for creating the image and album
-    if params[:album_id]
+    # if params[:album_id]
       album_id = params[:album_id]
-      params.delete("album_id")
-      binding.pry
-    end
+      # params.delete("album_id")
+      # binding.pry
+    # end
     instagram_id = params[:image_id]
-    params.delete("image_id")
-    params.delete("controller")
-    params.delete("action")
-    new_hash = params.symbolize_keys
+    ig_url = params[:image_url]
+    ig_caption = params[:image_caption]
+    ig_user = params[:username]
+    ig_user_avatar = params[:user_avatar]
+    ig_video_url = params[:video_url]
+    ig_created_time = params[:created_time]
+
+    # params.delete("image_id")
+    # params.delete("controller")
+    # params.delete("action")
+    # new_hash = params.symbolize_keys
 
     # create or find the album
     if album_id == "untitled" || !album_id
@@ -73,7 +80,7 @@ class AlbumsController < ApplicationController
       remove_image = album.images.find_by(instagram_id: instagram_id)
       remove_image.destroy
     else
-      album.images << Image.create(instagram_id: instagram_id, image_info: new_hash)
+      album.images << Image.create(instagram_id: instagram_id, ig_url: ig_url, ig_caption: ig_caption, ig_user: ig_user, ig_user_avatar: ig_user_avatar, ig_video_url: ig_video_url, ig_created_time: ig_created_time)
     end
 
     album.save

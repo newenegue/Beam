@@ -4,9 +4,17 @@
 <%#= link_to "New Album", new_album_path %>
 
 <% if @albums != [] %>
-	<ul>
-		<% @albums.each do |album| %>
-			<li><%= link_to album.title, album_path(album) %> | <%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-		<% end %>
-	</ul>
+	<% @albums.each do |album| %>
+		<div class="album_container">
+			<%= album.title %>
+			<%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<a href="<%= album_url(album) %>">
+				<div class="thumb_container">
+					<% album.images[0..4].each do |image| %>
+						<%= image_tag image.ig_url, :class => "thumb" %>
+					<% end %>
+				</div>
+			</a>
+		</div>
+	<% end %>
 <% end %>

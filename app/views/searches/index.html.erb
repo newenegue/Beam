@@ -1,11 +1,3 @@
-
-
-<!-- hashtag search bar -->
-<%= form_tag searches_path, :method => "get" do %>
-	<%=text_field_tag :search, params[:search], :placeholder => "Search a hashtag or @username"%>
-	<%= submit_tag "Search", :name => nil %>
-<% end %>
-
 <!-- Instagram user login/logout -->
 <% if session[:access_token] %>
 	<%= image_tag current_user.avatar, id: "avatar" %> 
@@ -27,7 +19,7 @@ add to album button should not be displayed if there is no beam user logged in.
 	<% if session[:access_token] %>
 		<select id="select_album">
 			<option>Choose an album</option>
-			<%= current_user.albums.each do |album| %>
+			<%= current_user.albums.reverse.each do |album| %>
 				<option value="<%= album.id %>"><%= album.title %></option>
 			<% end %>
 		</select>
