@@ -11,20 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227185213) do
+ActiveRecord::Schema.define(version: 20140305190456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "albums", force: true do |t|
     t.string   "title"
-    t.string   "image_ids",  default: [], array: true
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
+
+  create_table "images", force: true do |t|
+    t.string   "instagram_id"
+    t.hstore   "image_info"
+    t.integer  "album_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["album_id"], name: "index_images_on_album_id", using: :btree
 
   create_table "searches", force: true do |t|
     t.datetime "created_at"

@@ -45,12 +45,20 @@
 	var album_id;
 
 	$(document.body).on('click', '.add_to_album' ,function(){
+		var result = $(this).data();
+		// console.log($(this).data());
 		// send data to add_image controller action
 		$.ajax({
 			url: "http://localhost:3000/albums/add_image",
 			type: "post",
 			data: {
-				image_id: $(this).data().imageIds,
+				image_id: result.imageId,
+				image_url: result.imageUrl,
+				image_caption: result.imageCaption,
+				username: result.username,
+				user_avatar: result.userAvatar,
+				video_url: result.videoUrl,
+				created_time: result.timeAgo,
 				album_id: album_id
 			},
 			success: function(data) {

@@ -9,6 +9,9 @@ group :development, :test do
 	gem 'rspec-rails'
 end
 
+# hstore
+gem 'activerecord-postgres-hstore'
+
 # foundation
 gem 'foundation-rails'
 

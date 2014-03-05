@@ -15,8 +15,9 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    set_post.destroy
-    redirect_to posts_path
+    # binding.pry
+    set_album.destroy
+    redirect_to albums_path
   end
 
   def index
@@ -42,16 +43,28 @@ class AlbumsController < ApplicationController
   # add an image to an album
   # data sent from ajax call
   def add_image
-    image_id = params[:image_id]
+    params.delete("controller")
+    params.delete("action")
+    new_hash = params.symbolize_keys
+    binding.pry
+    # what will happen to album id params????
+    # image_id = params[:image_id]
     album_id = params[:album_id]
     if album_id == "untitled" || !album_id
+      binding.pry
       if current_user.albums.find_by(title: 'untitled')
+        binding.pry
         album = current_user.albums.find_by(title: 'untitled')
+        binding.pry
       else
-        album = current_user.albums.create(title: 'untitled')
+        binding.pry
+        # album = current_user.albums.create(title: 'untitled', images: [])
+        album = current_user.albums.new(title: 'untitled', images: [])
+        binding.pry
       end
     else
       album = current_user.albums.find_by(id: album_id)
+      binding.pry
     end
     # if album_id || album_id != "untitled"
     #   album = current_user.albums.find_by(id: album_id)
@@ -63,14 +76,18 @@ class AlbumsController < ApplicationController
     #     album = current_user.albums.create(title: 'untitled')
     #   end
     # end
-    if album.image_ids.include? image_id
+    binding.pry
+    if album.images.include? new_hash
+    # if album.image_ids.include? image_id
       # remove it
-      album.image_ids -= [image_id]
+      # album.image_ids -= [image_id]
+      album.images -= [new_hash]
     else
       # add it
-      album.image_ids += [image_id]
+      album.images += [new_hash]
+      # album.image_ids += [image_id]
     end
-    # binding.pry
+    binding.pry
     album.save
     render nothing: true
   end

@@ -1,7 +1,7 @@
 <h1><%= @album.title %></h1><br>
-<% if @album.image_ids != [] %>
+<% if @album.images != [] %>
 	<ul>
-		<% @album.image_ids.each do |image| %>
+		<% @album.images.each do |image| %>
 			<li><%= image %></li>
 		<% end %>
 	</ul>

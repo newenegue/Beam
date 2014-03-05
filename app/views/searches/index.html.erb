@@ -19,16 +19,19 @@
 <!-- 
 	need to handle bad requests for tags that are not viewable and revoked access separately
 INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app needs to logout in the app and set session[:access_token] to nil
+add to album button should not be displayed if there is no beam user logged in.
 -->
 
 <!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
-	<select id="select_album">
-		<option>Choose an album</option>
-		<%= current_user.albums.each do |album| %>
-			<option value="<%= album.id %>"><%= album.title %></option>
-		<% end %>
-	</select>
+	<% if session[:access_token] %>
+		<select id="select_album">
+			<option>Choose an album</option>
+			<%= current_user.albums.each do |album| %>
+				<option value="<%= album.id %>"><%= album.title %></option>
+			<% end %>
+		</select>
+	<% end %>
 	<button id="fullscreen">Fullscreen</button>
 	<button id="fullscreen_caption">Fullscreen w/captions</button>
 	<div class="scrollbar">
@@ -47,7 +50,9 @@ INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app nee
 							<% if result.videos %>
 								<a href="<%= result.videos.standard_resolution.url %>" target="_blank">Play Video</a>
 							<% end %>
-							<div class="add_to_album" data-image-ids="<%= result.id %>">Add</div>
+							<% if session[:access_token] %>
+								<div class="add_to_album" data-image-id="<%= result.id %>" data-image-url="<%= result.images.standard_resolution.url %>" data-image-caption="<%= result.caption.text if result.caption%>" data-username="<%= result.user.username %>" data-user-avatar="<%= result.user.profile_picture %>" data-video-url="<%= result.videos.standard_resolution.url if result.videos %>" data-time-ago="<%= result.created_time %>">Add</div>
+							<% end %>
 						</div>
 						<div class="image_footer">
 							<%= truncate(result.caption.text, length: 100) if result.caption %>

@@ -6,7 +6,7 @@
 <% if @albums != [] %>
 	<ul>
 		<% @albums.each do |album| %>
-			<li><%= link_to album.title, album_path(album) %></li>
+			<li><%= link_to album.title, album_path(album) %> | <%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %></li>
 		<% end %>
 	</ul>
 <% end %>
