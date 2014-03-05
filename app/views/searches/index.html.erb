@@ -23,11 +23,10 @@ INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app nee
 
 <!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
-<!-- NEED TO RELOAD THIS ON IMAGE ADD!!! -->
 	<select id="select_album">
 		<option>Choose an album</option>
 		<%= current_user.albums.each do |album| %>
-		<option value="<%= album.id %>"><%= album.title %></option>
+			<option value="<%= album.id %>"><%= album.title %></option>
 		<% end %>
 	</select>
 	<button id="fullscreen">Fullscreen</button>

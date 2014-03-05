@@ -44,16 +44,25 @@ class AlbumsController < ApplicationController
   def add_image
     image_id = params[:image_id]
     album_id = params[:album_id]
-    if album_id
-      album = current_user.albums.find_by(id: album_id)
-    else
-      # create new untitled album if it doesn't exist
+    if album_id == "untitled" || !album_id
       if current_user.albums.find_by(title: 'untitled')
         album = current_user.albums.find_by(title: 'untitled')
       else
         album = current_user.albums.create(title: 'untitled')
       end
+    else
+      album = current_user.albums.find_by(id: album_id)
     end
+    # if album_id || album_id != "untitled"
+    #   album = current_user.albums.find_by(id: album_id)
+    # else
+    #   # create new untitled album if it doesn't exist
+    #   if current_user.albums.find_by(title: 'untitled')
+    #     album = current_user.albums.find_by(title: 'untitled')
+    #   else
+    #     album = current_user.albums.create(title: 'untitled')
+    #   end
+    # end
     if album.image_ids.include? image_id
       # remove it
       album.image_ids -= [image_id]

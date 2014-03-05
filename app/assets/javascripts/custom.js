@@ -54,6 +54,8 @@
 				album_id: album_id
 			},
 			success: function(data) {
+				if($("#select_album option:contains('untitled')").text() !== "untitled")
+					$("#select_album option").first().after('<option id="untitled" value="untitled">untitled</option>');
 				console.log("Add image to " + album_id + " album!");
 			}
 		});
