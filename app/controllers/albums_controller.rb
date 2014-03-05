@@ -44,79 +44,38 @@ class AlbumsController < ApplicationController
   # data sent from ajax call
   def add_image
 
-    # parse params, remove controller and action
-    # parse params, extract image_id(instagram_id)
-    # create album, if doesn't exist blah blah.
-    # album = current_user.albums.create(title: untitled)
-    # album.images.create(instagram_id: image_id, image_info: hash_of_stuff(new_hash))
-
-    # album.images.create(image_info: hash(this will have instagram_id in it.))
-
-    # check if the album has an image with that instagram id in the database
-    # then we want to remove the image from the database, that will take care of all the relationships
-    # else an image with instagram id doesnt exist in database
-    # lets create the image
-    # then SAVE album and image
-
-
-    binding.pry
+    # clean up params for creating the image and album
+    if params[:album_id]
+      album_id = params[:album_id]
+      params.delete("album_id")
+      binding.pry
+    end
+    instagram_id = params[:image_id]
+    params.delete("image_id")
     params.delete("controller")
     params.delete("action")
-    binding.pry
-    # new_hash = params.symbolize_keys
-    # binding.pry
-    # what will happen to album id params????
-    # image_id = params[:image_id]
-    album_id = params[:album_id]
-    params.delete[:album_id]
-    binding.pry
-    instagram_id = params[:instagram_id]
-    params.delete[:instagram_id]
-    binding.pry
     new_hash = params.symbolize_keys
-    binding.pry
 
+    # create or find the album
     if album_id == "untitled" || !album_id
-      binding.pry
       if current_user.albums.find_by(title: 'untitled')
-        binding.pry
         album = current_user.albums.find_by(title: 'untitled')
-        binding.pry
       else
-        binding.pry
         # album = current_user.albums.create(title: 'untitled', images: [])
         album = current_user.albums.new(title: 'untitled')
-        binding.pry
       end
     else
       album = current_user.albums.find_by(id: album_id)
-      binding.pry
     end
-    # if album_id || album_id != "untitled"
-    #   album = current_user.albums.find_by(id: album_id)
-    # else
-    #   # create new untitled album if it doesn't exist
-    #   if current_user.albums.find_by(title: 'untitled')
-    #     album = current_user.albums.find_by(title: 'untitled')
-    #   else
-    #     album = current_user.albums.create(title: 'untitled')
-    #   end
-    # end
 
-    # album.images.include? image object
-
-    binding.pry
-    if album.images.include? new_hash
-    # if album.image_ids.include? image_id
-      # remove it
-      # album.image_ids -= [image_id]
-      album.images -= [new_hash]
+    # add or remove the image from album
+    if album.images.any? {|image| image.instagram_id == instagram_id}
+      remove_image = album.images.find_by(instagram_id: instagram_id)
+      remove_image.destroy
     else
-      # add it
-      album.images += [new_hash]
-      # album.image_ids += [image_id]
+      album.images << Image.create(instagram_id: instagram_id, image_info: new_hash)
     end
-    binding.pry
+
     album.save
     render nothing: true
   end
