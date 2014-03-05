@@ -43,6 +43,23 @@ class AlbumsController < ApplicationController
   # add an image to an album
   # data sent from ajax call
   def add_image
+
+    # parse params, remove controller and action
+    # parse params, extract image_id(instagram_id)
+    # create album, if doesn't exist blah blah.
+    # album = current_user.albums.create(title: untitled)
+    # album.images.create(instagram_id: image_id, image_info: hash_of_stuff(new_hash))
+
+    # album.images.create(image_info: hash(this will have instagram_id in it.))
+
+    # check if the album has an image with that instagram id in the database
+    # then we want to remove the image from the database, that will take care of all the relationships
+    # else an image with instagram id doesnt exist in database
+    # lets create the image
+    # then SAVE album and image
+
+
+
     params.delete("controller")
     params.delete("action")
     new_hash = params.symbolize_keys
