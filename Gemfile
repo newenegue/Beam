@@ -12,8 +12,8 @@ end
 # hstore
 gem 'activerecord-postgres-hstore'
 
-# foundation
-gem 'foundation-rails'
+# bootstrap
+gem 'bootstrap-sass', '~> 3.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'

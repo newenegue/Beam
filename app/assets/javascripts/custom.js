@@ -3,6 +3,26 @@
 // -------------------------------------------------------------
 
 (function () {
+
+	// -------------------------------------------------------------
+	// Keypress handlers
+	// -------------------------------------------------------------
+	$(document).keydown(function(e){
+		// toggle captions on fullscreen
+		if(e.keyCode == 67) {
+			console.log('c');
+			caption_fs = !caption_fs;
+			if(caption_fs){
+				$('.frame_fs').addClass('caption_fs');
+			}
+			else{
+				$('.frame_fs').removeClass('caption_fs');
+				$('.frame').removeClass('caption_fs');
+			}
+			
+		}
+	});
+
 	// -------------------------------------------------------------
 	// Check if user is logged into Instagram
 	// -------------------------------------------------------------
@@ -114,21 +134,21 @@
 	var sly = new Sly($frame, options).init();
 	sly.pause();
 	sly.reload();
-	var caption_fs = false; // this should get set from the user settings checkbox!!!!!!
+	var caption_fs = false;
 	var cap_length = 100;
 	
+
 
 	// -------------------------------------------------------------
 	// Event listener for fullscreen toggling
 	// -------------------------------------------------------------
 	if (screenfull.enabled) {
 		document.addEventListener(screenfull.raw.fullscreenchange, function () {
+			
 			if(screenfull.isFullscreen){
 				$('.frame').addClass('frame_fs');
 				$('.frame_fs').removeClass('frame');
-				if(caption_fs){
-					$('.frame_fs').addClass('caption_fs');
-				}
+				cap_length = 200;
 				sly.set('speed', 0);
 			}
 			else {
@@ -203,22 +223,6 @@
 	// -------------------------------------------------------------
 	$('#fullscreen').click(function () {
 		if (screenfull.enabled) {
-			var frame = $('.frame')[0];
-			sly.reload();
-			screenfull.request(frame);
-			sly.toggle();
-		}
-	});
-
-
-	// REMOVE THIS WHEN THE CAPTION CHECK BOX IS WORKING
-	// -------------------------------------------------------------
-	// Event handler for fullscreen button with captions
-	// -------------------------------------------------------------
-	$('#fullscreen_caption').click(function () {
-		if (screenfull.enabled) {
-			caption_fs = true;
-			cap_length = 200;
 			var frame = $('.frame')[0];
 			sly.reload();
 			screenfull.request(frame);
