@@ -59,7 +59,8 @@
 				user_avatar: result.userAvatar,
 				video_url: result.videoUrl,
 				created_time: result.timeAgo,
-				album_id: album_id
+				album_id: album_id,
+				in_album: result.inAlbum
 			},
 			success: function(data) {
 				if($("#select_album option:contains('untitled')").text() !== "untitled")
@@ -113,7 +114,7 @@
 	var sly = new Sly($frame, options).init();
 	sly.pause();
 	sly.reload();
-	var caption_fs = false;
+	var caption_fs = false; // this should get set from the user settings checkbox!!!!!!
 	var cap_length = 100;
 	
 
@@ -209,6 +210,8 @@
 		}
 	});
 
+
+	// REMOVE THIS WHEN THE CAPTION CHECK BOX IS WORKING
 	// -------------------------------------------------------------
 	// Event handler for fullscreen button with captions
 	// -------------------------------------------------------------

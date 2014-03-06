@@ -1,0 +1,17 @@
+<%= link_to "My Albums", albums_path %><br>
+<%= image_tag @user.avatar %><br>
+username: <%= @user.username %><br>
+<!-- 
+checkbox goes here
+this check box will send an event to jquery
+jquery will set the variable caption_fs
+default value is false (no captions on fullscreen)
+toggle to true(show captions on fullscreen)
+
+IF THE CHECKBOX IS WORKING
+clean up custom.js and get rid of 
+$('#fullscreen_caption').click(function (){});
+
+clean up searches index.html.erb and albums show.html.erb and remove 
+<button id="fullscreen_caption">Fullscreen w/captions</button>
+-->

@@ -1,20 +1,19 @@
-<h1>Albums#index</h1>
-<p>Find me in app/views/albums/index.html.erb</p>
+<h1>My Albums</h1>
 
 <%#= link_to "New Album", new_album_path %>
 
 <% if @albums != [] %>
 	<% @albums.each do |album| %>
 		<div class="album_container">
-			<%= album.title %>
-			<%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %>
 			<a href="<%= album_url(album) %>">
+				<div><%= album.title %></div>
 				<div class="thumb_container">
 					<% album.images[0..4].each do |image| %>
 						<%= image_tag image.ig_url, :class => "thumb" %>
 					<% end %>
 				</div>
 			</a>
+			<div><%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %></div>
 		</div>
 	<% end %>
 <% end %>

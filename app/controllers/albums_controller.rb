@@ -43,13 +43,7 @@ class AlbumsController < ApplicationController
   # add an image to an album
   # data sent from ajax call
   def add_image
-
-    # clean up params for creating the image and album
-    # if params[:album_id]
-      album_id = params[:album_id]
-      # params.delete("album_id")
-      # binding.pry
-    # end
+    album_id = params[:album_id]
     instagram_id = params[:image_id]
     ig_url = params[:image_url]
     ig_caption = params[:image_caption]
@@ -57,11 +51,6 @@ class AlbumsController < ApplicationController
     ig_user_avatar = params[:user_avatar]
     ig_video_url = params[:video_url]
     ig_created_time = params[:created_time]
-
-    # params.delete("image_id")
-    # params.delete("controller")
-    # params.delete("action")
-    # new_hash = params.symbolize_keys
 
     # create or find the album
     if album_id == "untitled" || !album_id

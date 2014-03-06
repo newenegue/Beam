@@ -13,11 +13,20 @@
   </head>
 
   <body>
-  	<h1>Beam</h1>
+  	<a href="http://localhost:3000"><h1>Beam</h1></a>
 
     <%= form_tag searches_path, :method => "get" do %>
       <%=text_field_tag :search, params[:search], :placeholder => "Search a hashtag or @username"%>
       <%= submit_tag "Search", :name => nil %>
+    <% end %>
+
+    <!-- Instagram user login/logout -->
+    <% if session[:access_token] %>
+      <%= image_tag current_user.avatar, id: "avatar" %> 
+      <%= link_to current_user.username, user_path(current_user) %><br>
+      <%= link_to "LOG OUT OF INSTAGRAM", {controller: "sessions", action: "disconnect"}, id: "disconnect" %><br>
+    <% else %>
+      <%= link_to "Login with Instagram", controller: "sessions", action: "connect" %><br>
     <% end %>
 
     <%= flash[:error] %>

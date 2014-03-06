@@ -4,11 +4,20 @@ img#avatar {
 	height: 32px;
 }
 
+.album_container {
+	float: left;
+	width: 100%;
+}
+
 .thumb_container {
 	height: 150px;
 	width: 800px;
-	border: 5px solid black;
+	border: 5px solid rgba(0,0,0,0.3);
 	// background-color: red;
+}
+
+.thumb_container:hover {
+	border: 5px solid rgba(200,255,0,1);
 }
 
 .thumb {

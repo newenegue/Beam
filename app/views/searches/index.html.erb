@@ -1,21 +1,13 @@
-<!-- Instagram user login/logout -->
-<% if session[:access_token] %>
-	<%= image_tag current_user.avatar, id: "avatar" %> 
-	<%= current_user.username %><br>
-	<%= link_to "LOG OUT OF INSTAGRAM", {controller: "sessions", action: "disconnect"}, id: "disconnect" %><br>
-	<%= link_to "My Albums", albums_path %><br>
-<% else %>
-	<%= link_to "Login with Instagram", controller: "sessions", action: "connect" %><br>
-<% end %>
+<%= (link_to "My Albums", albums_path) if session[:access_token] %><br>
 
 <!-- 
 	need to handle bad requests for tags that are not viewable and revoked access separately
 INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app needs to logout in the app and set session[:access_token] to nil
-add to album button should not be displayed if there is no beam user logged in.
 -->
 
 <!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
+	<!-- select album -->
 	<% if session[:access_token] %>
 		<select id="select_album">
 			<option>Choose an album</option>
@@ -24,17 +16,24 @@ add to album button should not be displayed if there is no beam user logged in.
 			<% end %>
 		</select>
 	<% end %>
+
+	<!-- fullscreen button -->
 	<button id="fullscreen">Fullscreen</button>
 	<button id="fullscreen_caption">Fullscreen w/captions</button>
+
+	<!-- scroll bar -->
 	<div class="scrollbar">
 	    <div class="handle"></div>
 	</div>
+
+	<!-- slideshow -->
 	<div class="frame">
 	    <ul class="slidee">
 			<% @instagram_results.each do |result| %>
 				<li>
-					<%#= result.to_json %>
+					<!-- instagram image information -->
 					<div class="image_info">
+						<!-- username, user image, time posted, add to album button -->
 						<div class="image_header">
 							<%= image_tag result.user.profile_picture, id: "avatar" %>
 							<cite><a href="http://instagram.com/<%= result.user.username %>" target="_blank"><%= result.user.username %></a></cite>
@@ -46,10 +45,12 @@ add to album button should not be displayed if there is no beam user logged in.
 								<div class="add_to_album" data-image-id="<%= result.id %>" data-image-url="<%= result.images.standard_resolution.url %>" data-image-caption="<%= result.caption.text if result.caption%>" data-username="<%= result.user.username %>" data-user-avatar="<%= result.user.profile_picture %>" data-video-url="<%= result.videos.standard_resolution.url if result.videos %>" data-time-ago="<%= result.created_time %>">Add</div>
 							<% end %>
 						</div>
+						<!-- caption -->
 						<div class="image_footer">
 							<%= truncate(result.caption.text, length: 100) if result.caption %>
 						</div>
 					</div>
+					<!-- instagram image -->
 					<%= image_tag result.images.standard_resolution.url %>
 				</li>
 			<% end %>
