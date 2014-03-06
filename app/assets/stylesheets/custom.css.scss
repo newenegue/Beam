@@ -1,13 +1,17 @@
-.title {
-	height: 40vh;
-}
+
 .header {
   font-size: 80px;
-  width: 100vw;
-/*  padding-top: 90px;*/
+  padding-top: 50px;
+  padding-bottom: 20px;
   font-family: Bebas, sans-serif; 
   text-align: center;
   color: #f26d68;
+  margin: 0 auto;
+}
+
+#select_album {
+	padding-top: 10px;
+	color: #34495e;
 }
 
 .mainsearch {
@@ -17,12 +21,22 @@
 }
 
 .searchbutton {
-	border:		2px solid #f15d5b;
-	padding:		10px 20px;
-	font-size:		14px;
+	border: 2px solid #f15d5b;
+	padding: 10px 20px;
+	font-size: 14px;
 	background-color:	#f15d5b;
-	font-weight:		bold;
-	color:			#2d525d;
+	font-weight: bold;
+	opacity: 1;
+	-moz-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition:all 0.2s ease-in-out;
+	color: #2d525d;
+}
+
+.searchbutton:hover {
+	text-decoration: none;
+	opacity: 0.5;
+	color: #2d525d;
 }
 
 .searchbtn {
@@ -35,11 +49,14 @@
 #ctrbtns {
 	width: 420px;
 	margin: 0 auto;
+}
 
+.fs {
+	color: #34495e;
 }
 
 #fullscreen {
-	background-color: #f15d5b;
+	background-color: #f26d68;
 	margin-top: 20px;
 	width: 200px;
 	height: 50px;
@@ -48,7 +65,7 @@
 }
 
 #fullscreen_caption {
-	background-color: #f15d5b;
+	background-color: #f26d68;
 	width: 200px;
 	height: 50px;
 	padding: 10px 10px;
@@ -56,8 +73,7 @@
 
 }
 
-.avatar {
-	margin-left: 10px;
+.name {
 	color: #f26d68;
 }
 
@@ -70,9 +86,9 @@
 }
 
 .login:hover {
-	background-color: 
+	text-decoration: none;
 	opacity: 0.5;
-
+	color: white;
 }*/
 
 .albums {
@@ -86,34 +102,16 @@
 	color: white;
 }
 
-.login::hover {
-	text-decoration: none;
-	opacity: 0.5;
-	color: white;
-}
-/*.mainslide {
-	background-color: blue;
-}*/
-
-
-/*Styles Beam dropdown and Albums link and hides them until search occurs*/
-
-/*.fakeslider {
-  width: 100%;
-  display: none;
-  margin: 0 auto;
+.top-bar {
+	padding-top: 20px;
 }
 
-.nav {
-  width: 100%;
-  display: none;
-  margin: 0 auto;
-}*/
+.top-bar-section {
+  height: 70px;
 
-.albumselect {
-	width: 300px;
-	margin: 50vw;
 }
+
+
 
 /*MODAL!!!!!!*/
 .modalDialog {
@@ -182,7 +180,6 @@
 	font-size: 30px;
 }
 
-
 .heart:hover {
 	opacity: 1;
 	font-size: 30px;
@@ -193,19 +190,15 @@
 	font-size: 30px;
 }
 
-
 .caption {
 	font-family: cursive;
 }
-
-
 
 img#avatar {
 	border-radius: 100px;
 	width: 32px;
 	height: 32px;
 }
-
 
 .album_container {
 	float: left;
@@ -350,14 +343,17 @@ img#avatar {
 	}
 	
 }
-
+.handle {
+	opacity:0;
+}
 // ------------------------------------------------
 // Default slideshow
 // ------------------------------------------------
 .frame {
+	margin-top: 30px;
 	width: 100%;
 	padding: 30px 0 30px 0;
-	background-color: rgba(200,200,200,1);
+	background-color: #344958;
 	height: 480px;
 
 	-webkit-perspective: 800px;

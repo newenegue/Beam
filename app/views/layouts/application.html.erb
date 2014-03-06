@@ -14,22 +14,59 @@
 
   <body>
 
-  	<a href="http://localhost:3000"><h1>Beam</h1></a>
+<!--  NAV BAR -->
+<!-- <header> -->
+<nav class="top-bar" data-topbar>
+<section class="top-bar-section"> 
+ <ul>
+    <li>
+      <% if session[:access_token] %>
+        <span><%= image_tag current_user.avatar, id: "avatar" %>
+        <%= link_to current_user.username, user_path(current_user), class: "name" %></span>
+      <% end %>
+    </li>
 
-    <%= form_tag searches_path, :method => "get" do %>
-      <%=text_field_tag :search, params[:search], :placeholder => "Search a hashtag or @username"%>
-      <%= submit_tag "Search", :name => nil %>
-    <% end %>
+    <li id="select_album"  class="albumdd">     
+      <% if session[:access_token] %>
+        <select>
+          <option>Choose an album</option>
+          <%= current_user.albums.reverse.each do |album| %>
 
-    <!-- Instagram user login/logout -->
-    <% if session[:access_token] %>
-      <%= image_tag current_user.avatar, id: "avatar" %> 
-      <%= link_to current_user.username, user_path(current_user) %><br>
-      <%= link_to "LOG OUT OF INSTAGRAM", {controller: "sessions", action: "disconnect"}, id: "disconnect" %><br>
-    <% else %>
-      <%= link_to "Login with Instagram", controller: "sessions", action: "connect" %><br>
-    <% end %>
+            <option value="<%= album.id %>"><%= album.title %></option>
+          <% end %>
+        </select>
+      <% end %>
+    </li>
+  </ul>
 
+
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <% if session[:access_token] %>
+      <li><%= link_to "My Albums", albums_path, class: "albums" %></li>
+      <li><%= link_to "LOG OUT OF INSTAGRAM", {controller: "sessions", action: "disconnect"}, id: "disconnect"%>
+      </li>
+      <% else %>
+      <li><%= link_to "Login with Instagram", controller: "sessions", action: "connect"%></li>
+      <% end %>
+      <li></li>
+    </ul>
+  </section>
+</nav>
+<!-- </header> -->
+
+<h1 class="title"> 
+    <a href="http://localhost:3000"><p class="header">Beam</p></a>
+</h1>
+
+<div class="mainsearch">
+  <%= form_tag searches_path, :method => "get" do %>
+  <div class="searchbar"><%=text_field_tag :search, params[:search], :placeholder => "Search for a hashtag or @username" %></div>
+  <div class="searchbtn">
+    <%= submit_tag "Search", :name => nil, class: "searchbutton" %>
+  </div>
+  <% end %>
+</div>
 
     <%= flash[:error] %>
     <%= flash[:notice] %>
