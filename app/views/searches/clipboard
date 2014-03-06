@@ -1,0 +1,20 @@
+
+  <% if session[:access_token] %>
+    <div class="avatar"><%= image_tag current_user.avatar, id: "avatar" %>
+    <%= current_user.username %>
+    <div class="signin"><%= link_to "LOG OUT OF INSTAGRAM", {controller: "sessions", action: "disconnect"}, id: "disconnect", class: "login" %></div><!-- <br> -->
+    <%= link_to "My Albums", albums_path, class: "albums" %>
+
+  <% else %>
+
+    <div class="signin"><%= link_to "Login with Instagram", controller: "sessions", action: "connect", class: "login" %></div><!-- <br> -->
+  <% end %>
+
+
+
+
+    $('#user_button').toggle(function () {
+    $("#user_button").addClass("active");
+}, function () {
+    $("#user_button").removeClass("active");
+});

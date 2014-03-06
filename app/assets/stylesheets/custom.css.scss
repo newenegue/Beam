@@ -1,17 +1,6 @@
-.nav {
-	
-}
-
-.avatar {
-
-}
-.backgclr {
-  background-color: #fec56d;
-}
-
-/*.title {
+.title {
 	height: 40vh;
-}*/
+}
 .header {
   font-size: 80px;
   width: 100vw;
@@ -66,10 +55,13 @@
 	margin: 0 auto;
 
 }
-.login {
-/*	margin: 0 auto;
-	position: 20vh;
-	text-align: center;*/
+
+.avatar {
+	margin-left: 10px;
+	color: #f26d68;
+}
+
+/*.login {
 	opacity: 1;
 	-moz-transition: all 0.2s ease-in-out;
 	-webkit-transition: all 0.2s ease-in-out;
@@ -77,11 +69,11 @@
 	color: white;
 }
 
-.login::hover {
-	text-decoration: none;
+.login:hover {
+	background-color: 
 	opacity: 0.5;
-	color: white;
-}
+
+}*/
 
 .albums {
 	margin: 0 auto;
@@ -118,7 +110,10 @@
   margin: 0 auto;
 }*/
 
-
+.albumselect {
+	width: 300px;
+	margin: 50vw;
+}
 
 /*MODAL!!!!!!*/
 .modalDialog {
@@ -176,7 +171,32 @@
 .close:hover { background: #00d9ff; }
 
 
+.name {
+	padding-top: 20px;
+	padding-left: 30px;
+	color: #f15d5b;
+}
 
+.heart {
+	opacity: 0.5;
+	font-size: 30px;
+}
+
+
+.heart:hover {
+	opacity: 1;
+	font-size: 30px;
+}
+
+.heart:active {
+	opacity: 1;
+	font-size: 30px;
+}
+
+
+.caption {
+	font-family: cursive;
+}
 
 
 
@@ -185,7 +205,6 @@ img#avatar {
 	width: 32px;
 	height: 32px;
 }
-
 
 
 

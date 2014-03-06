@@ -1,34 +1,76 @@
-<a href="#openModal">Open Modal</a>
+
+<!-- MODAL -->
+<!-- <a href="#openModal">Open Modal</a>
 
 <div id="openModal" class="modalDialog">
 	<div>
 		<a href="#close" title="Close" class="close">X</a>
 		<%= link_to "Login with Instagram", controller: "sessions", action: "connect", class: "login" %>
 	</div>
-</div>
+</div> -->
 
-<nav class="nav">
+
+
+<!-- <nav class="top-bar" data-topbar> -->
 	<!-- Instagram user login/logout -->
-	<% if session[:access_token] %>
-		<div class="avatar"><%= image_tag current_user.avatar, id: "avatar" %>
-		<%= current_user.username %>
-		<div class="signin"><%= link_to "LOG OUT OF INSTAGRAM", {controller: "sessions", action: "disconnect"}, id: "disconnect", class: "login" %></div><!-- <br> -->
-		<%= link_to "My Albums", albums_path, class: "albums" %><!-- <br> -->
-	<% else %>
-		<div class="signin"><%= link_to "Login with Instagram", controller: "sessions", action: "connect", class: "login" %></div><!-- <br> -->
-	<% end %>
+ 
+<!--  NAV BAR -->
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li>
+	    <% if session[:access_token] %>
+	      <h1 class="name"><%= image_tag current_user.avatar, id: "avatar" %>
+				<%= current_user.username %></h1>
+			<% end %>
+    </li>
+    
+    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+  </ul>
+
+  <section class="top-bar-section">
+
+    <!-- Right Nav Section -->
+    <ul class="right">
+    	<% if session[:access_token] %>
+    	<li><%= link_to "My Albums", albums_path, class: "albums" %></li>
+    	<li><%= link_to "LOG OUT OF INSTAGRAM", {controller: "sessions", action: "disconnect"}, id: "disconnect", class: "login" %>
+      </li>
+      <% else %>
+      <li><%= link_to "Login with Instagram", controller: "sessions", action: "connect", class: "login" %></li>
+      <% end %>
+      <li></li>
+<!--       <li class="active"><a href="#">Right Button Active</a></li>
+      <li class="has-dropdown">
+        <a href="#">Right Button with Dropdown</a>
+        <ul class="dropdown">
+          <li><a href="#">First link in dropdown</a></li>
+
+        </ul>
+      </li> -->
+    </ul>
+
+    <!-- Left Nav Section -->
+ <!--    <ul class="left">
+      <li><a href="#">Left Nav Button</a></li>
+    </ul> -->
+  </section>
+</nav>
+
+
 	<header class="title"> 
     <p class="header">Beam</p>
   </header>
-</nav>
+
 <!-- hashtag search bar -->
 
 <div class="mainsearch">
 	<%= form_tag searches_path, :method => "get" do %>
-		<%=text_field_tag :search, params[:search], :placeholder => "Search for a hashtag" %>
-		<div class="searchbtn"><%= submit_tag "Search", :name => nil, class: "searchbutton"%></div>
+	<div class="searchbar"><%=text_field_tag :search, params[:search], :placeholder => "Search for a hashtag" %></div>
+	<div class="searchbtn">
+		<%= submit_tag "Search", :name => nil, class: "searchbutton" %>
+	</div>
 	<% end %>
-
+</div>
 	<!-- 
 		need to handle bad requests for tags that are not viewable and revoked access separately
 	INSTAGRAM LOGOUT - when user logouts of instagram from instagram.com our app needs to logout in the app and set session[:access_token] to nil
@@ -38,14 +80,15 @@
 
 <!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
-	<select id="select_album">
-		<option>Choose an album</option>
-		<%= current_user.albums.each do |album| %>
-			<option value="<%= album.id %>"><%= album.title %></option>
-		<% end %>
-	</select>
-	<button id="fullscreen">Fullscreen</button>
-	<button id="fullscreen_caption">Fullscreen w/captions</button>
+	<% if session[:access_token] %>
+		<select id="select_album" class="albumselect">
+			<option>Choose an album</option>
+			<%= current_user.albums.each do |album| %>
+				<option value="<%= album.id %>"><%= album.title %></option>
+			<% end %>
+		</select>
+	<% end %>
+
 	<div class="scrollbar">
 	    <div class="handle"></div>
 	</div>
@@ -78,36 +121,46 @@
 <% end %>
 
 <br><br>
-<div id="ctrbtns">
-		<button class="fs" id="fullscreen">Fullscreen</button>
-		<button class="fs" id="fullscreen_caption">Fullscreen w/captions</button>
-	</div><br /><br />
+
 <!-- hidden Instagram logout container -->
 <div id="iframe_disconnect"></div>
-</div>
+
+
+<% if @instagram_results != [] && @instagram_results != nil %>
+<div id="ctrbtns">
+	<button class="fs" id="fullscreen">Fullscreen</button>
+	<button class="fs" id="fullscreen_caption">Fullscreen w/captions</button>
+</div><br /><br />
+<% end %>
+
 <!-- store next_url for jQuery -->
 <script>
 	var next_url = "<%= @next_url %>";
   
   // make search bar slideUp
-  $( document ).ready(function() {
-    $(".searchbtn").submit(function(event) {
-      event.preventDefault();
-      console.log("function called")
-      $(".title").slideUp(400, showAppear);
-    });
+  // $( document ).ready(function() {
+    // $(".mainsearch").submit(function(event) {
+    //   event.preventDefault();
+    //   var form = $('form').serialize();
+    //   $.get("<%= searches_path %>", form, null)
 
-    // allows slideshow to appear
-    function showAppear() {
-      console.log("working it!")
-      $(".fakeslider, .fs").fadeIn(300, null);
-      // $(".nav").fadeIn(300, null);
-    }
-  });
-  $( document ).ready(function() {
-  $(".fakeslider").fullScreen(true);
-  $(".fakeslider").fullScreen(false);
-  });
+    //   console.log("function called")
+    //   $(".title, searchbtn, searchbar").slideUp(400);
+    // });
+	
+// // , showAppear
+//     // allows slideshow to appear
+//   //   function showAppear() {
+//   //     console.log("working it!")
+//   //     $("#ctrbtns").fadeIn(300, null);
+//   //     console.log("working it!")
+//   //     // $(".nav").fadeIn(300, null);
+//   //   }
+//   });
+  // $( document ).ready(function() {
+  // $(".fakeslider").fullScreen(true);
+  // $(".fakeslider").fullScreen(false);
+  // });
 </script>
 
 
