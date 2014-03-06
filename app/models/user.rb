@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_many :albums
+	has_many :albums, dependent: :destroy
 
 	validates :username, presence: true
 	validates :avatar, presence: true
