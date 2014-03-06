@@ -12,11 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require bootstrap
+//= require jquery.turbolinks
 //= require sly
 //= require screenfull
 //= require timeago
+//= require bootstrap
+//= require turbolinks
 //= require_tree .
-
-$(function(){ $(document).foundation(); });
