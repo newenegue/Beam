@@ -1,8 +1,211 @@
+.title {
+	height: 40vh;
+}
+.header {
+  font-size: 80px;
+  width: 100vw;
+/*  padding-top: 90px;*/
+  font-family: Bebas, sans-serif; 
+  text-align: center;
+  color: #f26d68;
+}
+
+.mainsearch {
+/*  height: 75vh;*/ /*controling placement of slider*/
+  width: 500px;
+  margin: 0 auto;
+}
+
+.searchbutton {
+	border:		2px solid #f15d5b;
+	padding:		10px 20px;
+	font-size:		14px;
+	background-color:	#f15d5b;
+	font-weight:		bold;
+	color:			#2d525d;
+}
+
+.searchbtn {
+	width: 100px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+#ctrbtns {
+	width: 420px;
+	margin: 0 auto;
+
+}
+
+#fullscreen {
+	background-color: #f15d5b;
+	margin-top: 20px;
+	width: 200px;
+	height: 50px;
+	padding: 10px 10px;
+	margin: 0 auto;
+}
+
+#fullscreen_caption {
+	background-color: #f15d5b;
+	width: 200px;
+	height: 50px;
+	padding: 10px 10px;
+	margin: 0 auto;
+
+}
+
+.avatar {
+	margin-left: 10px;
+	color: #f26d68;
+}
+
+/*.login {
+	opacity: 1;
+	-moz-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition:all 0.2s ease-in-out;
+	color: white;
+}
+
+.login:hover {
+	background-color: 
+	opacity: 0.5;
+
+}*/
+
+.albums {
+	margin: 0 auto;
+/*	position: 20vh;*/
+	text-align: center;
+	opacity: 1;
+	-moz-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition:all 0.2s ease-in-out;
+	color: white;
+}
+
+.login::hover {
+	text-decoration: none;
+	opacity: 0.5;
+	color: white;
+}
+/*.mainslide {
+	background-color: blue;
+}*/
+
+
+/*Styles Beam dropdown and Albums link and hides them until search occurs*/
+
+/*.fakeslider {
+  width: 100%;
+  display: none;
+  margin: 0 auto;
+}
+
+.nav {
+  width: 100%;
+  display: none;
+  margin: 0 auto;
+}*/
+
+.albumselect {
+	width: 300px;
+	margin: 50vw;
+}
+
+/*MODAL!!!!!!*/
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modalDialog:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modalDialog > div {
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);
+}
+
+.close {
+	background: #606061;
+	color: #FFFFFF;
+	line-height: 25px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 24px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
+
+
+.name {
+	padding-top: 20px;
+	padding-left: 30px;
+	color: #f15d5b;
+}
+
+.heart {
+	opacity: 0.5;
+	font-size: 30px;
+}
+
+
+.heart:hover {
+	opacity: 1;
+	font-size: 30px;
+}
+
+.heart:active {
+	opacity: 1;
+	font-size: 30px;
+}
+
+
+.caption {
+	font-family: cursive;
+}
+
+
+
 img#avatar {
 	border-radius: 100px;
 	width: 32px;
 	height: 32px;
 }
+
 
 .album_container {
 	float: left;
@@ -24,6 +227,10 @@ img#avatar {
 	width: 150px;
 	height: 100%;
 }
+
+
+
+
 
 // ------------------------------------------------
 // Instagram logout iframe

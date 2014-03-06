@@ -9,10 +9,11 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
-    <%#= javascript_include_tag "jquery" %>
+    <%= javascript_include_tag "jquery" %>
   </head>
 
   <body>
+
   	<a href="http://localhost:3000"><h1>Beam</h1></a>
 
     <%= form_tag searches_path, :method => "get" do %>
@@ -29,10 +30,12 @@
       <%= link_to "Login with Instagram", controller: "sessions", action: "connect" %><br>
     <% end %>
 
+
     <%= flash[:error] %>
     <%= flash[:notice] %>
 
     <%= yield %>
     <%= javascript_include_tag "application" %>
+
   </body>
 </html>
