@@ -1,3 +1,92 @@
 // Place all the styles related to the Albums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.my_albums {
+  padding-top: 80px;
+  padding-bottom: 20px;
+  width: 200px;
+  margin: 0 auto;
+  text-align: left;
+  color: #283849;
+}
+
+.albname {
+  font-size: 20px;
+  margin-top: 50px;
+}
+
+#middle_col {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/*.arb {
+  border: 5px solid black;
+}*/
+
+.thumb {
+  border: 3px solid rgba(42, 100, 150,1);
+  width: 150px;
+  height: 100%;
+}
+
+.thumb:hover {
+  border: 3px solid rgba(42, 100, 150,0.5);
+}
+
+.field {
+  width: 300px;
+  margin: 0 auto;
+  border-radius: 30px;
+  text-align: center;
+  color: #283849;
+}
+
+.actions {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.edit_label_field {
+  font-size: 25px;
+}
+
+.edit_field {
+  text-align: center;
+  font-weight: bold;
+}
+
+.edit_submit {
+  border: 2px solid #f15d5b;
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #f15d5b;
+  font-weight: bold;
+  opacity: 1;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition:all 0.2s ease-in-out;
+  color: #2d525d;
+}
+
+.edit_submit:hover {
+  text-decoration: none;
+  opacity: 0.7;
+  color: #2d525d;
+}
+
+.middlething {
+  margin-top: 200px;
+}
+/*-------------------------------
+          EDIT PAGE
+-------------------------------*/
+
+.editbtn {
+  width: 100px;
+  margin: 0 auto;
+  text-align: center;
+}
