@@ -7,6 +7,7 @@ gem 'instagram'
 group :development, :test do
 	gem 'pry'
 	gem 'rspec-rails'
+	gem "factory_girl_rails", "~> 4.0"
 end
 
 # hstore

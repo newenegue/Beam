@@ -29,23 +29,6 @@ describe User do
   			expect(user).not_to be_valid
   		end
   	end  	
-
-  	context 'when avatar is not a jpg' do
-  		# it 'is not valid' do
-  		# 	user = User.new(@valid_attr.merge(avatar: 'http://images.ak.instagram.com/profiles/anonymousUser'))
-  		# 	expect(user).not_to be_valid
-  		# end
-  	end
-
-  	context 'when email is not the correct format' do
-  		it 'is not valid' do
-  			user = User.new(@valid_attr.merge(email: 'blahblah'))
-  			expect(user).not_to be_valid
-  		end
-  	end
-
-
-
   end
 
 end
