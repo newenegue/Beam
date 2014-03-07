@@ -28,28 +28,28 @@
 	// -------------------------------------------------------------
 	// Check if user is logged into Instagram
 	// -------------------------------------------------------------
-	var check_login = null;
-	$.ajax({
-		url: "http://instagram.com/",
-		type: 'get',
-		dataType: 'html',
-		async: false,
-		success: function(data) {
-			check_login = data;
-		}
-	});
+	// var check_login = null;
+	// $.ajax({
+	// 	url: "http://instagram.com/",
+	// 	type: 'get',
+	// 	dataType: 'html',
+	// 	async: false,
+	// 	success: function(data) {
+	// 		check_login = data;
+	// 	}
+	// });
 
-	if(check_login){
-		if(check_login.indexOf("not-logged-in") >= 0) {
-			if(logged_in==="true") {
-				window.location="http://localhost:3000/session/disconnect";
-				logged_in = "false";
-			}
-		}
-		else {
-			logged_in = "true";
-		}
-	}
+	// if(check_login){
+	// 	if(check_login.indexOf("not-logged-in") >= 0) {
+	// 		if(logged_in==="true") {
+	// 			window.location="http://localhost:3000/session/disconnect";
+	// 			logged_in = "false";
+	// 		}
+	// 	}
+	// 	else {
+	// 		logged_in = "true";
+	// 	}
+	// }
 
 	// -------------------------------------------------------------
 	// Add image to beam album

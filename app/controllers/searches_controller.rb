@@ -6,7 +6,6 @@ class SearchesController < ApplicationController
 
   def index
 
-    # binding.pry
   	# check is the search field is empty
   	if params[:search] == ""
   		flash[:notice] = "You did not search for a hashtag so we search puppies for you!"

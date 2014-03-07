@@ -17,7 +17,6 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    # binding.pry
     set_album.destroy
     redirect_to albums_path
   end
@@ -84,19 +83,12 @@ class AlbumsController < ApplicationController
 
     image_to_remove = Image.find_by(id: image_id)
     album = Album.find_by(id: album_id)
-    # binding.pry
     if album.images.any? {|img| img.id == image_id.to_i}
-      # binding.pry
       image_to_remove.album_id = nil
-      # binding.pry
       image_to_remove.save
-      # binding.pry
     else
-      # binding.pry
       album.images << image_to_remove
-      # binding.pry
       album.save
-      # binding.pry
     end
     
     render nothing: true
@@ -106,10 +98,8 @@ private
   def remove_orphans
     images_to_delete = Image.all.where(album_id: nil)
     images_to_delete.each do |image|
-      # binding.pry
       image.destroy
     end
-    # image_to_delete = Image.find_by(album_id: nil)
   end
   def set_album
     @album = Album.find(params[:id])

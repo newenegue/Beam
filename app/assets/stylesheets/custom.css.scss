@@ -15,6 +15,30 @@ $dropdown-link-hover-bg: lighten(#34495e, 5%);
 
 @import "bootstrap";
 
+@font-face {
+font-family: 'Bebas';
+src: url('/assets/bebas.eot');
+    src: url('/assets/bebas.eot?iefix') format('eot'),
+        url('/assets/bebas.woff') format('woff'),
+        url('/assets/bebas.ttf') format('truetype'),
+        url('/assets/bebas.svg#webfont') format('svg');
+
+}
+
+body {
+	margin-top: 60px;
+	font-family: Bebas, sans-serif;
+	word-spacing: 5px !important;
+}
+
+.nav_text {
+	word-spacing: 3px !important;
+}
+
+.filter-option{
+	word-spacing: 3px !important;
+}
+
 .ig_caption {
 	width: 85%;
 	float: left;
@@ -538,6 +562,4 @@ img#avatar {
 	}
 }
 
-body {
-	margin-top: 60px;
-}
+
