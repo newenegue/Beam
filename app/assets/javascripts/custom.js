@@ -68,6 +68,7 @@
 		var result = $(this).data();
 		// console.log($(this).data());
 		// send data to add_image controller action
+		$('.active_sly .add_to_album').toggleClass('selected');
 		$.ajax({
 			url: "http://localhost:3000/albums/add_image",
 			type: "post",
@@ -125,6 +126,7 @@
 		clickBar: 1,
 		cycleBy: 'items',
 		cycleInterval: 5000,
+		activeClass:   'active_sly',
 		keyboardNavBy: 'items'
 	};
 
@@ -196,17 +198,17 @@
 								if(caption.length == cap_length)
 									caption = caption  + "...";
 								if(result.videos){
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'">Add</div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer">'+ caption +'</div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'"></div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer">'+ caption +'</div></div><img src=' + result.images.standard_resolution.url + '></li>');
 								}
 								else {
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'">Add</div></div><div class="image_footer">'+ caption +'</div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'"></div></div><div class="image_footer">'+ caption +'</div></div><img src=' + result.images.standard_resolution.url + '></li>');
 								}
 							}
 							else{
 								if(result.videos)
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'">Add</div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'"></div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"></div></div><img src=' + result.images.standard_resolution.url + '></li>');
 								else
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'">Add</div></div><div class="image_footer"></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'"></div></div><div class="image_footer"></div></div><img src=' + result.images.standard_resolution.url + '></li>');
 							}
 							
 						}

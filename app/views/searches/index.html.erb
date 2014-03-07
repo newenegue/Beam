@@ -9,6 +9,16 @@
 <!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
 
+	<% if session[:access_token] %>
+      <select>
+        <option>Choose an album</option>
+        <%= current_user.albums.reverse.each do |album| %>
+
+          <option value="<%= album.id %>"><%= album.title %></option>
+        <% end %>
+      </select>
+    <% end %>
+
 	<!-- scroll bar -->
 
 	<div class="scrollbar">
@@ -33,7 +43,7 @@
 								<a href="<%= result.videos.standard_resolution.url %>" target="_blank">Play Video</a>
 							<% end %>
 							<% if session[:access_token] %>
-								<div class="add_to_album" data-image-id="<%= result.id %>" data-image-url="<%= result.images.standard_resolution.url %>" data-image-caption="<%= result.caption.text if result.caption%>" data-username="<%= result.user.username %>" data-user-avatar="<%= result.user.profile_picture %>" data-video-url="<%= result.videos.standard_resolution.url if result.videos %>" data-time-ago="<%= result.created_time %>">Add</div>
+								<div class="add_to_album" data-image-id="<%= result.id %>" data-image-url="<%= result.images.standard_resolution.url %>" data-image-caption="<%= result.caption.text if result.caption%>" data-username="<%= result.user.username %>" data-user-avatar="<%= result.user.profile_picture %>" data-video-url="<%= result.videos.standard_resolution.url if result.videos %>" data-time-ago="<%= result.created_time %>"></div>
 							<% end %>
 						</div>
 						<!-- caption -->
@@ -51,7 +61,10 @@
 	<div id="ctrbtns">
 		<button class="fs" id="fullscreen">Fullscreen</button>
 	</div><br /><br />
-
+<% else %>
+<h1 class="title"> 
+        <p class="header">Beam</p>
+    </h1>
 <% end %>
 
 <br><br>
