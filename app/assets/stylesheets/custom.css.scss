@@ -6,8 +6,25 @@ $navbar-default-bg: #34495e;
 $btn-default-bg: lighten(#34495e, 10%);
 $btn-default-border: $btn-default-bg;
 $btn-default-color: #f26d68;
+$dropdown-bg: lighten(#34495e, 5%);
+$dropdown-border: $navbar-default-bg;
+$dropdown-divider-bg: $dropdown-border;
+$dropdown-link-color: $navbar-default-link-color;
+$dropdown-link-hover-color: white;
+$dropdown-link-hover-bg: lighten(#34495e, 5%);
+
 @import "bootstrap";
 
+.selectpicker {
+	margin-top: 6px;
+}
+
+#search {
+	width: 300px;
+}
+.navbar-text {
+	cursor: pointer;
+}
 .header {
   font-size: 80px;
   padding-top: 50px;
@@ -57,8 +74,20 @@ $btn-default-color: #f26d68;
 
 
 #ctrbtns {
-	width: 420px;
+	width: 32px;
+	margin: 0 0 0 50px;
+	color: #34495e  ;
+}
+
+.glyphicon-fullscreen{
+	display: inline-block;
+	font-size:2.2em;
+	color: #34495e  ;
 	margin: 0 auto;
+	width: 30px;
+	&:hover {
+		opacity: 0.5;
+	}	
 }
 
 .fs {
@@ -66,7 +95,7 @@ $btn-default-color: #f26d68;
 }
 
 #fullscreen {
-	background-color: #f26d68;
+	// background-color: #f26d68;
 	margin-top: 20px;
 	width: 200px;
 	height: 50px;
@@ -192,6 +221,7 @@ img#user_avatar {
 	width: 40px;
 	height: 40px;
 	margin-top: 5px;
+	margin-left: 10px;
 }
 
 img#avatar {
@@ -467,10 +497,18 @@ img#avatar {
 	padding: 5px;
 	width: 33px;
 	height:33px;
+	cursor: pointer;
+	opacity: 0.5;
 
 	&.selected {
 		background-position: -31px 0;
 		right: 5px;
 	}
+	&:hover{
+		opacity: 1;
+	}
 }
 
+body {
+	margin-top: 60px;
+}

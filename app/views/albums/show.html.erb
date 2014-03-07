@@ -1,7 +1,6 @@
-<h1><%= @album.title %></h1><br>
+<h1 class="album_title"><%= @album.title %></h1><br>
 
 <% if @album.images != [] %>
-	<button id="fullscreen">Fullscreen</button>
 	<div class="scrollbar">
 	    <div class="handle"></div>
 	</div>
@@ -29,6 +28,10 @@
 		</ul>
 	</div>
 <% end %>
+
+<div id="ctrbtns">
+	<a class="fs" id="fullscreen"><span class="glyphicon glyphicon-fullscreen"></span></a>
+</div>
 
 <%= link_to "Edit album", edit_album_path(@album) %>
 

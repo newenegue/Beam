@@ -4,6 +4,8 @@
 
 (function () {
 
+	$('select').selectpicker();
+
 	// -------------------------------------------------------------
 	// Keypress handlers
 	// -------------------------------------------------------------
@@ -27,7 +29,6 @@
 	// Check if user is logged into Instagram
 	// -------------------------------------------------------------
 	var check_login = null;
-	var logged_in = false;
 	$.ajax({
 		url: "http://instagram.com/",
 		type: 'get',
@@ -40,23 +41,15 @@
 
 	if(check_login){
 		if(check_login.indexOf("not-logged-in") >= 0) {
-			// set session[:access_token] = nil
-			// set session[:client] = nil
-			console.log("NOT LOGGED INTO INSTAGRAM");
-			logged_in = false;
+			if(logged_in==="true") {
+				window.location="http://localhost:3000/session/disconnect";
+				logged_in = "false";
+			}
 		}
 		else {
-			console.log("YOU ARE LOGGED INTO INSTAGRAM");
-			logged_in = true;
+			logged_in = "true";
 		}
 	}
-
-	// -------------------------------------------------------------
-	// Event handler for Instagram logout - does not rely on sly
-	// -------------------------------------------------------------
-	$('#disconnect').on('click', function() {
-		$('#iframe_disconnect').html('<iframe src="https://instagram.com/accounts/logout/">');
-	});
 
 	// -------------------------------------------------------------
 	// Add image to beam album

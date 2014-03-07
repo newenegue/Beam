@@ -9,10 +9,13 @@ class SessionsController < ApplicationController
 
   def disconnect
     # allow Instagram logout through jQuery time to process
-    sleep 0.5
+    # sleep 5
+    # render nothing: true
     # reset token and redirect
   	session[:access_token] = nil
+    # binding.pry
   	redirect_to searches_path
+    # redirect_to "https://instagram.com/accounts/logout/"
   end
 
   def callback

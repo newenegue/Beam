@@ -13,9 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require bootstrap-select
+//= require bootstrap
 //= require sly
 //= require screenfull
 //= require timeago
-//= require bootstrap
 // require turbolinks
 //= require_tree .

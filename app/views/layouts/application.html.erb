@@ -7,7 +7,6 @@
     <title>BEAM</title>
 
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -23,25 +22,41 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Beam</a>
+          <a class="navbar-brand" href="http://localhost:3000">Beam</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
+            <li>
+              <%= form_tag searches_path, :method => "get", :class => "navbar-form navbar-left center-block" do %>
+                <div class="form-group">
+                  <%=text_field_tag :search, params[:search], :placeholder => "Search for a #hashtag or @username", :class => "form-control" %>
+                </div>
+                <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+              <% end %>
+            </li>
           </ul>
-          <%= form_tag searches_path, :method => "get", :class => "navbar-form navbar-left center-block" do %>
-            <div class="form-group">
-              <%=text_field_tag :search, params[:search], :placeholder => "Search for a hashtag or @username", :class => "form-control" %>
-            </div>
-            <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
-          <% end %>
           <ul class="nav navbar-nav navbar-right">
             <% if session[:access_token] %>
+              <li>
+                <select class="selectpicker">
+                  <option>Choose an album</option>
+                  <%= current_user.albums.reverse.each do |album| %>
+
+                    <option value="<%= album.id %>"><%= album.title %></option>
+                  <% end %>
+                </select>
+              </li>
               <li><%= image_tag current_user.avatar, id: "user_avatar" %></li>
-              <li><p class="navbar-text"><%= current_user.username %></p></li>
-              <li><%= link_to "Albums", albums_path %></li>
-              <li><%= link_to "Logout", {controller: "sessions", action: "disconnect"}, id: "disconnect"%></li>
+              <li class="dropdown">
+                <p class="navbar-text dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></p>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Albums", albums_path %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "Logout", {controller: "sessions", action: "disconnect"}, id: "disconnect"%></li>
+                </ul>
+              </li>
             <% else %>
               <li><%= link_to "Login with Instagram", controller: "sessions", action: "connect" %></li>
             <% end %>
@@ -50,13 +65,13 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-<!-- </header> -->
-
     <%= flash[:error] %>
     <%= flash[:notice] %>
 
     <%= yield %>
     <%= javascript_include_tag "application" %>
+
     
+
   </body>
 </html>

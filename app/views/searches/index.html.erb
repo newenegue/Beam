@@ -9,16 +9,6 @@
 <!-- Display images from search result -->
 <% if @instagram_results != [] && @instagram_results != nil %>
 
-	<% if session[:access_token] %>
-      <select>
-        <option>Choose an album</option>
-        <%= current_user.albums.reverse.each do |album| %>
-
-          <option value="<%= album.id %>"><%= album.title %></option>
-        <% end %>
-      </select>
-    <% end %>
-
 	<!-- scroll bar -->
 
 	<div class="scrollbar">
@@ -58,9 +48,10 @@
 		</ul>
 	</div>
 
+
 	<div id="ctrbtns">
-		<button class="fs" id="fullscreen">Fullscreen</button>
-	</div><br /><br />
+		<a class="fs" id="fullscreen"><span class="glyphicon glyphicon-fullscreen"></span></a>
+	</div>
 <% else %>
 <h1 class="title"> 
         <p class="header">Beam</p>
@@ -69,37 +60,12 @@
 
 <br><br>
 
-<!-- hidden Instagram logout container -->
-<div id="iframe_disconnect"></div>
+
 
 <!-- store next_url for jQuery -->
 <script>
 	var next_url = "<%= @next_url %>";
-  
-  // make search bar slideUp
-  // $( document ).ready(function() {
-    // $(".mainsearch").submit(function(event) {
-    //   event.preventDefault();
-    //   var form = $('form').serialize();
-    //   $.get("<%= searches_path %>", form, null)
-
-    //   console.log("function called")
-    //   $(".title, searchbtn, searchbar").slideUp(400);
-    // });
-	
-// // , showAppear
-//     // allows slideshow to appear
-//   //   function showAppear() {
-//   //     console.log("working it!")
-//   //     $("#ctrbtns").fadeIn(300, null);
-//   //     console.log("working it!")
-//   //     // $(".nav").fadeIn(300, null);
-//   //   }
-//   });
-  // $( document ).ready(function() {
-  // $(".fakeslider").fullScreen(true);
-  // $(".fakeslider").fullScreen(false);
-  // });
+      var logged_in = "<%= current_user ? true : false %>";
 </script>
 
 
