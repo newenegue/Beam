@@ -8,4 +8,4 @@ If you have an Instagram account, just login with your Instagram credentials and
 
 If you want captions to show up during the fullscreen slideshow just press 'c'.
 
-Enjoy!
+Enjoy your slideshow!
