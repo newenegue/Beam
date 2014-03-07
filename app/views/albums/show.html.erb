@@ -19,7 +19,12 @@
 							<div class="add_to_album" data-image-id="<%= image.instagram_id %>" data-in-album="true"></div>
 						</div>
 						<div class="image_footer">
-							<%= truncate(image.ig_caption , length: 100) if image.ig_caption %>
+							<div class="image_footer">
+								<div class="ig_caption"><%= truncate(image.ig_caption, length: 100) if image.ig_caption %></div>
+								<div>
+									<a class="fs"><span class="glyphicon glyphicon-fullscreen"></span></a>
+								</div>
+							</div>
 						</div>
 					</div>
 					<%= image_tag image.ig_url %>
@@ -27,12 +32,7 @@
 			<% end %>
 		</ul>
 	</div>
-	<div class="editbtn"><button id="fullscreen">Fullscreen</button>
 <% end %>
-
-<div id="ctrbtns">
-	<a class="fs" id="fullscreen"><span class="glyphicon glyphicon-fullscreen"></span></a>
-</div>
 
 <%= link_to "Edit album", edit_album_path(@album) %>
 

@@ -38,7 +38,10 @@
 						</div>
 						<!-- caption -->
 						<div class="image_footer">
-							<%= truncate(result.caption.text, length: 100) if result.caption %>
+							<div class="ig_caption"><%= truncate(result.caption.text, length: 100) if result.caption %></div>
+							<div>
+								<a class="fs"><span class="glyphicon glyphicon-fullscreen"></span></a>
+							</div>
 						</div>
 					</div>
 					<!-- instagram image -->
@@ -49,9 +52,7 @@
 	</div>
 
 
-	<div id="ctrbtns">
-		<a class="fs" id="fullscreen"><span class="glyphicon glyphicon-fullscreen"></span></a>
-	</div>
+	
 <% else %>
 <!-- <h1 class="title"> 
     <p class="header">Beam</p>

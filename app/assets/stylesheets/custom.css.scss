@@ -15,6 +15,24 @@ $dropdown-link-hover-bg: lighten(#34495e, 5%);
 
 @import "bootstrap";
 
+.ig_caption {
+	width: 85%;
+	float: left;
+}
+.trash {
+	position: absolute;
+	left: 0px;
+	top: 75px;
+	font-size: 1.7em;
+}
+
+.navbar-center {
+	position: absolute;
+	width: 40%;
+	left: 30%;
+	text-align: center;
+}
+
 .logo-container {
   margin-top: 120px;
   height: 60vh;
@@ -26,6 +44,7 @@ $dropdown-link-hover-bg: lighten(#34495e, 5%);
 
 .selectpicker {
 	margin-top: 6px;
+	// vertical-align: middle;
 }
 
 #search {
@@ -39,15 +58,9 @@ $dropdown-link-hover-bg: lighten(#34495e, 5%);
 	img {
 		height: 40px;
 		margin-top: 5px;
+		margin-left: 5px;
 	}
 	padding: 0 0 0 5px;
-}
-
-.navbar-center {
-	position: absolute;
-	width: 40%;
-	left: 30%;
-	text-align: center;
 }
 
 .header {
@@ -104,18 +117,19 @@ $dropdown-link-hover-bg: lighten(#34495e, 5%);
 }
 
 .glyphicon-fullscreen{
-	display: inline-block;
-	font-size:2.2em;
-	color: #34495e  ;
-	margin: 0 auto;
-	width: 30px;
+
+	font-size: 1.5em;
+	color: white;
+	float: right;
+	padding: 2px;
+	opacity: 0.5;
 	&:hover {
-		opacity: 0.5;
+		opacity: 1;
 	}	
 }
 
 .fs {
-	color: #34495e;
+	// color: #34495e;
 }
 
 #fullscreen {

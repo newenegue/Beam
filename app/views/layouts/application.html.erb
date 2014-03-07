@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>BEAM</title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <title>&nbsp;BEAM</title>
 
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
@@ -31,11 +31,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li>
-              <%= form_tag searches_path, :method => "get", :class => "navbar-form navbar-center" do %>
+              <%= form_tag searches_path, :method => "get", :class => "navbar-form" do %>
                 <div class="form-group">
                   <%=text_field_tag :search, params[:search], :placeholder => "Search for a #hashtag or @username", :class => "form-control" %>
                 </div>
-                <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+                <%= button_tag(type: 'submit', class: "btn btn-default") do %>
+                  <span class="glyphicon glyphicon-search"></span> 
+                <% end %>
+                <%#= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
               <% end %>
             </li>
           </ul>

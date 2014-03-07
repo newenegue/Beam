@@ -16,10 +16,20 @@
   font-size: 20px;
   margin-top: 50px;
 }
+.a_title {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  font-size: 1.7em;
+}
 
 #middle_col {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+#middle_col:hover {
+  opacity: 0.5;
 }
 
 /*.arb {
@@ -27,13 +37,13 @@
 }*/
 
 .thumb {
-  border: 3px solid rgba(42, 100, 150,1);
+  // border: 3px solid rgba(42, 100, 150,1);
   width: 150px;
   height: 100%;
 }
 
 .thumb:hover {
-  border: 3px solid rgba(42, 100, 150,0.5);
+  // border: 3px solid rgba(42, 100, 150,0.5);
 }
 
 .field {
