@@ -222,6 +222,24 @@ img#avatar {
 	text-align: center; 
 }
 
+.album_title {
+
+}
+.glyphicon-pencil {
+	font-size: 0.5em;
+	text-decoration: none;
+}
+
+.album_title_container {
+	margin: 0 auto;
+	width: 300px;
+	text-align: center;
+	padding: 0;
+	position: absolute;
+	z-index: 100;
+	left: 10%;
+}
+
 /*.thumb_container {
 	width: 1000px;
 	margin: 0 auto;
@@ -471,6 +489,29 @@ img#avatar {
 			}
 			
 		}
+	}
+}
+
+.remove_from_album {
+	position: absolute;
+	background: url('heart_sprite.png');
+	background-repeat:no-repeat;
+	background-size: 62px;
+	background-position: 2px 0;
+	top: 5px;
+	right: 7px;
+	padding: 5px;
+	width: 33px;
+	height:33px;
+	cursor: pointer;
+	opacity: 0.5;
+
+	&.selected {
+		background-position: -31px 0;
+		right: 5px;
+	}
+	&:hover{
+		opacity: 1;
 	}
 }
 

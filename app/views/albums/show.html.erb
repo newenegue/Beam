@@ -1,4 +1,4 @@
-<h1 class="album_title"><%= @album.title %></h1><br>
+<div class="album_title_container"><h1><span class="album_title"><%= @album.title.upcase %></span> <%= link_to "", edit_album_path(@album), :class => "glyphicon glyphicon-pencil" %></h1></div>
 
 <% if @album.images != [] %>
 	<div class="scrollbar">
@@ -16,7 +16,7 @@
 							<% if image.ig_video_url != "" %>
 								<a href="<%= image.ig_video_url %>" target="_blank">Play Video</a>
 							<% end %>
-							<div class="add_to_album" data-image-id="<%= image.instagram_id %>" data-in-album="true"></div>
+							<div class="remove_from_album selected" data-image-id="<%= image.id %>" data-album-id="<%= @album.id %>"></div>
 						</div>
 						<div class="image_footer">
 							<div class="image_footer">
@@ -33,8 +33,6 @@
 		</ul>
 	</div>
 <% end %>
-
-<%= link_to "Edit album", edit_album_path(@album) %>
 
 
 <script>

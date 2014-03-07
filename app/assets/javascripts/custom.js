@@ -57,6 +57,22 @@
 	// default to more recent album
 	var album_id;
 
+	$(document.body).on('click', '.remove_from_album' ,function(){
+		var result = $(this).data();
+		$('.active_sly .remove_from_album').toggleClass('selected');
+		$.ajax({
+			url: "http://localhost:3000/albums/remove_image",
+			type: "post",
+			data: {
+				image_id: result.imageId,
+				album_id: result.albumId
+			},
+			success: function(data) {
+				console.log("Remove image from " + album_id + " album!");
+			}
+		});
+	});
+
 	$(document.body).on('click', '.add_to_album' ,function(){
 		var result = $(this).data();
 		// console.log($(this).data());
@@ -66,15 +82,15 @@
 			url: "http://localhost:3000/albums/add_image",
 			type: "post",
 			data: {
-				image_id: result.imageId,
+				image_id: result.imageId, //
 				image_url: result.imageUrl,
 				image_caption: result.imageCaption,
 				username: result.username,
 				user_avatar: result.userAvatar,
 				video_url: result.videoUrl,
 				created_time: result.timeAgo,
-				album_id: album_id,
-				in_album: result.inAlbum
+				album_id: album_id, //
+				in_album: result.inAlbum //
 			},
 			success: function(data) {
 				if($("#select_album option:contains('untitled')").text() !== "untitled")
