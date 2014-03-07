@@ -1,4 +1,5 @@
 Beam
+![thoughtbot](http://thoughtbot.com/assets/tm/logo.png)
 ========
 Life's Slideshow
 
