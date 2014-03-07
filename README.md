@@ -1,4 +1,3 @@
-Beam
 ![beam](http://imagizer.imageshack.us/v2/280x200q90/138/6t7w.png)
 ========
 Life's Slideshow
