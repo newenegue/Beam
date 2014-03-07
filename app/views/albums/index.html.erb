@@ -1,4 +1,4 @@
-<h1>My Albums</h1>
+<h1 class="my_albums">My Albums</h1>
 
 <%#= link_to "New Album", new_album_path %>
 
@@ -8,13 +8,10 @@
 <div class="row">
 		<div class="albname col-md-2"><a href="<%= album_url(album) %>"><%= album.title %></a>
 		</div>
-		<div class="col-md-8">
-			<div class="arb">
+		<div class="col-md-8" id="middle_col">
 			<% album.images[0..4].each do |image| %>
 			<%= image_tag image.ig_url, :class => "thumb" %>
-	
 			<% end %>
-			</div>
 		</div>
 		<div class="col-md-2"><%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' } %>
 		</div>

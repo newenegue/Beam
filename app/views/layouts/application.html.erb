@@ -7,13 +7,13 @@
     <title>BEAM</title>
 
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
 
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -23,30 +23,31 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Beam</a>
+          <a class="navbar-brand" href="http://localhost:3000">
+            <%= image_tag("beam-image.png") %>
+          </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
           </ul>
-          <%= form_tag searches_path, :method => "get", :class => "navbar-form navbar-left" do %>
+
+          <%= form_tag searches_path, :method => "get", :class => "navbar-form navbar-center" do %>
+
             <div class="form-group">
               <%=text_field_tag :search, params[:search], :placeholder => "Search for a hashtag or @username", :class => "form-control" %>
+              <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
             </div>
-            <%= submit_tag "Search", :name => nil, :class => "btn btn-default" %>
+            
           <% end %>
           <ul class="nav navbar-nav navbar-right">
             <% if session[:access_token] %>
-              <li><%= image_tag current_user.avatar, id: "avatar" %></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Albums", albums_path %></li>
-                  <li class="divider"></li>
-                  <li><%= link_to "Logout", {controller: "sessions", action: "disconnect"}, id: "disconnect"%></li>
-                </ul>
-              </li>
+
+              <li><%= image_tag current_user.avatar, id: "user_avatar" %></li>
+              <li><p class="navbar-text"><%= current_user.username %></p></li>
+              <li><%= link_to "Albums", albums_path %></li>
+              <li><%= link_to "Logout", {controller: "sessions", action: "disconnect"}, id: "disconnect"%></li>
 
             <% else %>
               <li><%= link_to "Login with Instagram", controller: "sessions", action: "connect" %></li>
@@ -55,6 +56,7 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+
 
                 
 
@@ -68,16 +70,14 @@
                 <% end %>
               </select>
             <% end %>
-<!-- </header> -->
 
-    <h1 class="title"> 
-        <a href="http://localhost:3000"><p class="header">Beam</p></a>
-    </h1>
+<!-- </header> -->
 
     <%= flash[:error] %>
     <%= flash[:notice] %>
 
     <%= yield %>
-
+    <%= javascript_include_tag "application" %>
+    
   </body>
 </html>

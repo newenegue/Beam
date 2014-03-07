@@ -1,9 +1,7 @@
 <h1><%= @album.title %></h1><br>
 
-<%= link_to "Back to Albums", albums_path %><br>
-
 <% if @album.images != [] %>
-	<button id="fullscreen">Fullscreen</button>
+
 	<div class="scrollbar">
 	    <div class="handle"></div>
 	</div>
@@ -19,7 +17,7 @@
 							<% if image.ig_video_url != "" %>
 								<a href="<%= image.ig_video_url %>" target="_blank">Play Video</a>
 							<% end %>
-							<div class="add_to_album" data-image-id="<%= image.instagram_id %>" data-in-album="true">Add</div>
+							<div class="add_to_album" data-image-id="<%= image.instagram_id %>" data-in-album="true"></div>
 						</div>
 						<div class="image_footer">
 							<%= truncate(image.ig_caption , length: 100) if image.ig_caption %>
@@ -30,9 +28,10 @@
 			<% end %>
 		</ul>
 	</div>
+	<div class="editbtn"><button id="fullscreen">Fullscreen</button>
 <% end %>
 
-<%= link_to "Edit album", edit_album_path(@album) %>
+<button id="fullscreen"><%= link_to "Edit album", edit_album_path(@album) %></button></div>
 
 
 <script>

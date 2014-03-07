@@ -1,10 +1,11 @@
 <%= form_for @album do |f| %>
-
+<div class="middlething">
   <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
+    <%= f.label :Album_Name, :class => "edit_label_field" %><br>
+    <%= f.text_field :title, :class => "form-control edit_field" %>
+  </div><br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit'Update Album', :class => 'edit_submit' %>
   </div>
 <% end %>
+</div>

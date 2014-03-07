@@ -17,5 +17,5 @@
 //= require screenfull
 //= require timeago
 //= require bootstrap
-//= require turbolinks
+// require turbolinks
 //= require_tree .

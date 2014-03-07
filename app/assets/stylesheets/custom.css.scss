@@ -1,4 +1,26 @@
+$navbar-default-color: #f26d68;
+$navbar-default-link-color: $navbar-default-color;
+$navbar-default-link-hover-color: white;
+$navbar-default-brand-hover-color: #f26d68;
+$navbar-default-bg: #34495e;
+$btn-default-bg: lighten(#34495e, 10%);
+$btn-default-border: $btn-default-bg;
+$btn-default-color: #f26d68;
 @import "bootstrap";
+
+.navbar-brand  {
+	img {
+	height: 50px;
+	}
+	padding: 0 0 0 5px;
+}
+
+.navbar-center {
+	position: absolute;
+	width: 40%;
+	left: 30%;
+	text-align: center;
+}
 
 .header {
   font-size: 80px;
@@ -37,7 +59,7 @@
 
 .searchbutton:hover {
 	text-decoration: none;
-	opacity: 0.5;
+	opacity: 0.7;
 	color: #2d525d;
 }
 
@@ -119,6 +141,15 @@
 	font-family: cursive;
 }
 
+
+
+img#user_avatar {
+	border-radius: 100px;
+	width: 40px;
+	height: 40px;
+	margin-top: 5px;
+}
+
 img#avatar {
 	border-radius: 100px;
 	width: 32px;
@@ -148,31 +179,13 @@ img#avatar {
 	border: 5px solid rgba(200,255,0,1);
 }*/
 
-.albname {
-	font-size: 20px;
-	margin-top: 100px;
-}
-
-.mid {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.arb {
-	border: 5px solid black;
-}
-
-.thumb {
-	border: 3px solid rgba(42, 100, 150,1);
-	width: 150px;
-	height: 100%;
-}
-
-.thumb:hover {
-	border: 3px solid rgba(42, 100, 150,0.5);
-}
 
 
+
+
+// .navbar-default {
+// 	background-color: #34495e;
+// }
 
 
 
@@ -200,6 +213,7 @@ img#avatar {
 	    background: #222;
 	}
 }
+
 
 // ------------------------------------------------
 // Fullscreen slideshow
@@ -230,6 +244,7 @@ img#avatar {
 			margin: 0 -20px;
 
 			.image_info {
+				transition: 0.2s;
 				display: none;
 			}
 
@@ -238,11 +253,11 @@ img#avatar {
 				margin: 0 auto;
 				display: block;
 			}
-			&.active {
+			&.active_sly {
 			}
-			&.active ~ li {
+			&.active_sly ~ li {
 			}
-			&.active-fullscreen {
+			&.active_sly-fullscreen {
 				// width: 600px;
 				// height: 600px;
 			}
@@ -264,6 +279,7 @@ img#avatar {
 				}
 			}
 			.image_info {
+				transition: 0.2s;
 				height: 100%;
 				width: 100%;
 				display: block;
@@ -304,7 +320,6 @@ img#avatar {
 	margin-top: 30px;
 	width: 100%;
 	padding: 30px 0 30px 0;
-	background-color: #34495e;
 	height: 600px;
 
 	-webkit-perspective: 800px;
@@ -340,6 +355,8 @@ img#avatar {
 			img {
 				border-radius: 3px;
 				box-shadow: 3px 3px 20px rgba(0,0,0,0.6);
+				width: 420px;
+				height: 420px;
 			}
 			.image_info {
 				transition: 0.2s;
@@ -372,32 +389,24 @@ img#avatar {
 					background-color: rgba(0,0,0,0.5);
 				}
 			}
-			&.active {
+			&.active_sly {
 				width: 480px;
 				margin-top: -30px;
 				-webkit-transform: scale(1);
 				-ms-transform: scale(1);
 				transform: scale(1);
 				img {
-					border-radius: 0;
+					width: 480px;
+					height: 480px;
 				}
 				.image_info {
 					// background-color: rgba(0,0,0,0.2);
 					height: 480px;
 					width: 480px;
 					opacity: 0;
-					border-radius: 0;
-
-					.image_header {
-						border-radius: 0;
-					}
-
-					.image_footer {
-						border-radius: 0;
-					}
 				}
 			}
-			&.active ~ li {
+			&.active_sly ~ li {
 				-webkit-transform: rotateY(-60deg) scale(0.9);
 				-ms-transform: rotateY(-60deg) scale(0.9);
 				transform: rotateY(-60deg) scale(0.9);
@@ -412,8 +421,19 @@ img#avatar {
 
 .add_to_album {
 	position: absolute;
-	top: 0;
-	right: 0;
+	background: url('heart_sprite.png');
+	background-repeat:no-repeat;
+	background-size: 62px;
+	background-position: 2px 0;
+	top: 5px;
+	right: 7px;
 	padding: 5px;
+	width: 33px;
+	height:33px;
+
+	&.selected {
+		background-position: -31px 0;
+		right: 5px;
+	}
 }
 
