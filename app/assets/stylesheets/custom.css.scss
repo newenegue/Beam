@@ -15,6 +15,15 @@ $dropdown-link-hover-bg: lighten(#34495e, 5%);
 
 @import "bootstrap";
 
+.logo-container {
+  margin-top: 120px;
+  height: 60vh;
+  background-image: url('beam_logo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
 .selectpicker {
 	margin-top: 6px;
 }
@@ -28,7 +37,8 @@ $dropdown-link-hover-bg: lighten(#34495e, 5%);
 
 .navbar-brand  {
 	img {
-	height: 50px;
+		height: 40px;
+		margin-top: 5px;
 	}
 	padding: 0 0 0 5px;
 }
