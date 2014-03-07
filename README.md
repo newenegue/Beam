@@ -1,4 +1,4 @@
-![beam](http://imagizer.imageshack.us/v2/280x200q90/138/6t7w.png)
+![beam](http://s30.postimg.org/uis1s9wj5/beam_logo.png)
 ========
 Life's Slideshow
 
