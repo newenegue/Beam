@@ -24,13 +24,18 @@ class SessionsController < ApplicationController
     else
       # retrieve access_token
       response = Instagram.get_access_token(params[:code], :redirect_uri => CALLBACK_URL)
+      puts '---------REPONSE---------#{response}--------------'
       session[:access_token] = response.access_token
+      puts '---------Access Token---------#{session[:access_token]}--------------'
       session[:client] = Instagram.client(:access_token => session[:access_token])
+      puts '---------Client---------#{session[:client]}--------------'
       
       # create user account for first time users
       # THIS SHOULD BE DONE IN THE USERS CONTROLLER
       if User.find_by(username: session[:client].user.username) == nil
+        puts '---------CREATE A NEW USER--------------'
         user = User.new(username: session[:client].user.username, avatar: session[:client].user.profile_picture)
+        puts '---------User---------#{user}--------------'
         if user.save
           redirect_to :controller => 'searches', :action => 'index'
         else
