@@ -45,7 +45,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if session[:access_token] %>
               <li>
-                <select class="selectpicker">
+                <select>
                   <option>Choose an album</option>
                   <%= current_user.albums.reverse.each do |album| %>
 

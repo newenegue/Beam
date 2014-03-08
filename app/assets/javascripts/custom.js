@@ -75,7 +75,6 @@
 
 	$(document.body).on('click', '.add_to_album' ,function(){
 		var result = $(this).data();
-		// console.log($(this).data());
 		// send data to add_image controller action
 		$('.active_sly .add_to_album').toggleClass('selected');
 		$.ajax({
@@ -93,15 +92,19 @@
 				in_album: result.inAlbum //
 			},
 			success: function(data) {
-				if($("#select_album option:contains('untitled')").text() !== "untitled")
-					$("#select_album option").first().after('<option id="untitled" value="untitled">untitled</option>');
+				if($("select option:contains('untitled')").text() !== "untitled"){
+					$("select option").first().after('<option id="untitled" value="untitled">untitled</option>');
+					$("ul.dropdown-menu li").first().after('<li rel="1" class="selected"><a tabindex="0" class="" style=""><span class="text">untitled</span><i class="glyphicon glyphicon-ok icon-ok check-mark"></i></a></li>');
+				}
 				console.log("Add image to " + album_id + " album!");
 			}
 		});
 	});
 
+
+
 	// drop down album selector
-	$("#select_album").change( function() {
+	$("select").change( function() {
 		album_id = $(this).find("option:selected").attr("value");
 	});
 
@@ -207,17 +210,17 @@
 								if(caption.length == cap_length)
 									caption = caption  + "...";
 								if(result.videos){
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'"></div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"><div class="ig_caption">'+ caption +'</div><div><a class="fs" id="fullscreen"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'"></div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"><div class="ig_caption">'+ caption +'</div><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
 								}
 								else {
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'"></div></div><div class="image_footer"><div class="ig_caption">'+ caption +'</div><div><a class="fs" id="fullscreen"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'"></div></div><div class="image_footer"><div class="ig_caption">'+ caption +'</div><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
 								}
 							}
 							else{
 								if(result.videos)
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'"></div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"><div><a class="fs" id="fullscreen"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'"></div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
 								else
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'"></div></div><div class="image_footer"><div><a class="fs" id="fullscreen"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'"></div></div><div class="image_footer"><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
 							}
 							
 						}
@@ -232,7 +235,8 @@
 	// -------------------------------------------------------------
 	// Event handler for fullscreen button
 	// -------------------------------------------------------------
-	$('#fullscreen').click(function () {
+	$(document.body).on('click', '.fullscreen', function() {
+		console.log("clicked");
 		if (screenfull.enabled) {
 			var frame = $('.frame')[0];
 			sly.reload();
