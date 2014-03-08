@@ -10,9 +10,14 @@ group :development, :test do
 	gem "factory_girl_rails", "~> 4.0"
 end
 
+# heroku deploy
 gem 'rails_12factor', group: :production
 
+# save client keys
 gem 'figaro'
+
+# CORS
+gem 'rack-cors', :require => 'rack/cors'
 
 # hstore
 gem 'activerecord-postgres-hstore'
