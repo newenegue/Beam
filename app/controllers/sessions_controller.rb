@@ -3,6 +3,7 @@ require 'instagram'
 class SessionsController < ApplicationController
   def connect
     # send instagram users to login page
+    puts "---------------trying to connect to instagram---------------"
     redirect_to Instagram.authorize_url(:redirect_uri => CALLBACK_URL)
   end
 
