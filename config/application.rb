@@ -26,15 +26,5 @@ module Beam
     # config.i18n.default_locale = :de
     # config.active_record.schema_format = :sql
 
-
-    config.middleware.insert 0, Rack::Cors do
-    # config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
-    # config.middleware.insert_after Rails::Rack::Logger, Rack::Cors, :debug => true, :logger => Rails.logger do
-        allow do
-            origins '*'
-            resource '*', :headers => :any, :methods => [:post, :options]
-        end
-    end
-
   end
 end

@@ -194,39 +194,46 @@
 			// check is there is a next_url
 			if(next_url) {
 				// send get request with pagination next_url
-				$.get(next_url, function(instagram_results) {
-					// checks next_url for duplicates
-					if(next_url == instagram_results.pagination.next_url) {
+				$.ajax({
+					url: next_url,
+					type: 'GET',
+					crossDomain: true,
+					dataType: 'jsonp',
+					success: function(instagram_results) { 
+						// alert("Success"); 
+						if(next_url == instagram_results.pagination.next_url) {
 						next_url = next_url;
-					}
-					else {
-						// add images to sly
-						for(var i = 0; i < instagram_results.data.length; i++) {
-							result = instagram_results.data[i];
-							var time_ago = $.timeago(result.created_time * 1000);
-							if(result.caption){
-								var caption = $.trim(result.caption.text).substring(0, cap_length).trim(this);
-
-								if(caption.length == cap_length)
-									caption = caption  + "...";
-								if(result.videos){
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'"></div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"><div class="ig_caption">'+ caption +'</div><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
-								}
-								else {
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'"></div></div><div class="image_footer"><div class="ig_caption">'+ caption +'</div><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
-								}
-							}
-							else{
-								if(result.videos)
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'"></div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
-								else
-									sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'"></div></div><div class="image_footer"><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
-							}
-							
 						}
-						// update next_url
-						next_url = instagram_results.pagination.next_url;
-					}
+						else {
+							// add images to sly
+							for(var i = 0; i < instagram_results.data.length; i++) {
+								result = instagram_results.data[i];
+								var time_ago = $.timeago(result.created_time * 1000);
+								if(result.caption){
+									var caption = $.trim(result.caption.text).substring(0, cap_length).trim(this);
+
+									if(caption.length == cap_length)
+										caption = caption  + "...";
+									if(result.videos){
+										sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'"></div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"><div class="ig_caption">'+ caption +'</div><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									}
+									else {
+										sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'"></div></div><div class="image_footer"><div class="ig_caption">'+ caption +'</div><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									}
+								}
+								else{
+									if(result.videos)
+										sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + '<div class="add_to_album" data-image-ids="'+ result.id +'"></div><br><a href="' + result.videos.standard_resolution.url + '" target="_blank">Play Video</a></div><div class="image_footer"><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+									else
+										sly.add('<li><div class="image_info"><div class="image_header"><img src="' + result.user.profile_picture + '" id="avatar" ></img><cite><a href="http://instagram.com/' + result.user.username + '" target="_blank">' + result.user.username + '</a></cite> ' + time_ago + ' <div class="add_to_album" data-image-ids="'+ result.id +'"></div></div><div class="image_footer"><div><a class="fullscreen fs"><span class="glyphicon glyphicon-fullscreen"></span></a></div></div></div><img src=' + result.images.standard_resolution.url + '></li>');
+								}
+								
+							}
+							// update next_url
+							next_url = instagram_results.pagination.next_url;
+						}
+					},
+					error: function() { alert('Failed!'); },
 				});
 			}
 		}

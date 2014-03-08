@@ -17,7 +17,7 @@ gem 'rails_12factor', group: :production
 gem 'figaro'
 
 # CORS
-gem 'rack-cors', :require => 'rack/cors'
+# gem 'rack-cors', :require => 'rack/cors'
 
 # hstore
 gem 'activerecord-postgres-hstore'
