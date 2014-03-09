@@ -4,7 +4,7 @@
 				<div class="albname col-md-2"><p class="a_title"><%= album.title.upcase %></p></div>
 				<div class="col-md-8" id="middle_col">
 					<a href="<%= album_url(album) %>">
-						<% album.images[0..4].each do |image| %>
+						<% album.images[4..-1].each do |image| %>
 						<%= image_tag image.ig_url, :class => "thumb" %>
 						<% end %>
 					</a>

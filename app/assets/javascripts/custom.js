@@ -77,7 +77,7 @@
 		// send data to add_image controller action
 		$('.active_sly .add_to_album').toggleClass('selected');
 		$.ajax({
-			url: "http://localhost:3000/albums/add_image",
+			url: "http://beam-team.herokuapp.com/albums/add_image",
 			type: "post",
 			data: {
 				image_id: result.imageId, //
