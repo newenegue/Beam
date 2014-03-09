@@ -14,7 +14,7 @@ end
 gem 'rails_12factor', group: :production
 
 # save client keys
-gem 'figaro'
+# gem 'figaro'
 
 # CORS
 # gem 'rack-cors', :require => 'rack/cors'

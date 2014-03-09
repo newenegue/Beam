@@ -1,15 +1,23 @@
 <% if @albums != [] %>
 	<% @albums.each do |album| %>
-		<div class="row">
-				<div class="albname col-md-2"><p class="a_title"><%= album.title.upcase %></p></div>
-				<div class="col-md-8" id="middle_col">
+		<div class="container-fluid">
+		  <div class="row">
+				<div class="albname col-lg-2 col-md-2 col-sm-2 text-center"><p class="a_title"><%= album.title.upcase %></p></div>
+			
+			
+				<div class="col-lg-8 col-md-8 col-sm-8" id="middle_col">
 					<a href="<%= album_url(album) %>">
 						<% album.images[0..4].each do |image| %>
 						<%= image_tag image.ig_url, :class => "thumb" %>
 						<% end %>
 					</a>
+				
+			</div>
+			
+				<div class="col-lg-2 col-md-2 col-sm-2"><%= link_to '', album, method: :delete, data: { confirm: 'Are you sure?'}, :class => "trash glyphicon glyphicon-trash a_title" %>
 				</div>
-				<div class="col-md-2"><%= link_to '', album, method: :delete, data: { confirm: 'Are you sure?'}, :class => "glyphicon glyphicon-trash trash" %></div>
+		  	<hr>
+		  </div>
 		</div>
 	<% end %>
 <% end %>

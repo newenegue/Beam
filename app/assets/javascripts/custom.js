@@ -60,7 +60,7 @@
 		var result = $(this).data();
 		$('.active_sly .remove_from_album').toggleClass('selected');
 		$.ajax({
-			url: "http://beam-team.herokuapp.com/albums/remove_image",
+			url: "http://localhost:3000/albums/remove_image",
 			type: "post",
 			data: {
 				image_id: result.imageId,
