@@ -78,7 +78,7 @@
 		// send data to add_image controller action
 		$('.active_sly .add_to_album').toggleClass('selected');
 		$.ajax({
-			url: "http://beam-team.herokuapp.com/albums/add_image",
+			url: "http://localhost:3000/albums/add_image",
 			type: "post",
 			data: {
 				image_id: result.imageId, //
@@ -193,16 +193,19 @@
 		if (this.pos.dest > this.pos.end - 1800) {
 			// check is there is a next_url
 			if(next_url) {
+				// console.log('Next URL before ajax: ' + next_url);
 				// send get request with pagination next_url
 				$.ajax({
 					url: next_url,
 					type: 'GET',
 					crossDomain: true,
 					dataType: 'jsonp',
-					success: function(instagram_results) { 
-						// alert("Success"); 
-						if(next_url == instagram_results.pagination.next_url) {
-						next_url = next_url;
+					success: function(instagram_results) {
+						// prevent duplicates
+						pagination_url = instagram_results.pagination.next_url.substring(0, instagram_results.pagination.next_url.indexOf("&_="));
+						next_max_id = next_url.substring(next_url.indexOf("max_id=") + 7);
+						if( next_max_id === instagram_results.pagination.next_max_id) {
+							next_url = next_url;
 						}
 						else {
 							// add images to sly
@@ -230,10 +233,10 @@
 								
 							}
 							// update next_url
-							next_url = instagram_results.pagination.next_url;
+							next_url = pagination_url;
 						}
 					},
-					error: function() { alert('Failed!'); },
+					error: function() { console.log("End of Instagram Results"); },
 				});
 			}
 		}
@@ -252,10 +255,3 @@
 		}
 	});
 }());
-
-
-
-
-
-
-
