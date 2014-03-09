@@ -60,6 +60,7 @@
 		var result = $(this).data();
 		$('.active_sly .remove_from_album').toggleClass('selected');
 		$.ajax({
+			// url: "http://localhost:3000/albums/add_image",
 			url: "http://beam-team.herokuapp.com/albums/remove_image",
 			type: "post",
 			data: {
@@ -77,6 +78,7 @@
 		// send data to add_image controller action
 		$('.active_sly .add_to_album').toggleClass('selected');
 		$.ajax({
+			// url: "http://localhost:3000/albums/add_image",
 			url: "http://beam-team.herokuapp.com/albums/add_image",
 			type: "post",
 			data: {
