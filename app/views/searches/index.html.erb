@@ -33,7 +33,7 @@
 								<a href="<%= result.videos.standard_resolution.url %>" target="_blank">Play Video</a>
 							<% end %>
 							<% if session[:access_token] %>
-								<div class="add_to_album" data-image-id="<%= result.id %>" data-image-url="<%= result.images.standard_resolution.url %>" data-image-caption="<%= result.caption.text if result.caption%>" data-username="<%= result.user.username %>" data-user-avatar="<%= result.user.profile_picture %>" data-video-url="<%= result.videos.standard_resolution.url if result.videos %>" data-time-ago="<%= result.created_time %>"></div>
+								<div class="add_to_album" data-image-id="<%= result.id %>" data-image-url="<%= result.images.standard_resolution.url %>" data-image-caption="<%= result.caption.text[0..250] if result.caption%>" data-username="<%= result.user.username %>" data-user-avatar="<%= result.user.profile_picture %>" data-video-url="<%= result.videos.standard_resolution.url if result.videos %>" data-time-ago="<%= result.created_time %>"></div>
 							<% end %>
 						</div>
 						<!-- caption -->
