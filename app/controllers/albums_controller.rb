@@ -53,42 +53,27 @@ class AlbumsController < ApplicationController
     ig_video_url = params[:video_url]
     ig_created_time = params[:created_time]
 
-    # binding.pry
-
     # create or find the album
     if album_id == "untitled" || !album_id
-      # binding.pry
       if current_user.albums.find_by(title: 'untitled')
-        # binding.pry
         album = current_user.albums.find_by(title: 'untitled')
-        # binding.pry
       else
-        # binding.pry
         # album = current_user.albums.create(title: 'untitled', images: [])
         album = current_user.albums.new(title: 'untitled')
-        # binding.pry
       end
     else
-      # binding.pry
       album = current_user.albums.find_by(id: album_id)
-      # binding.pry
     end
-# binding.pry
+
     # add or remove the image from album
     if album.images.any? {|image| image.instagram_id == instagram_id}
-      # binding.pry
       remove_image = album.images.find_by(instagram_id: instagram_id)
-      # binding.pry
       remove_image.destroy
-      # binding.pry
     else
-      # binding.pry
       album.images << Image.create(instagram_id: instagram_id, ig_url: ig_url, ig_caption: ig_caption, ig_user: ig_user, ig_user_avatar: ig_user_avatar, ig_video_url: ig_video_url, ig_created_time: ig_created_time)
-      # binding.pry
     end
-# binding.pry
+
     album.save
-    # binding.pry
     render nothing: true
   end
 

@@ -12,7 +12,6 @@
 	$(document).keydown(function(e){
 		// toggle captions on fullscreen
 		if(e.keyCode == 67) {
-			console.log('c');
 			caption_fs = !caption_fs;
 			if(caption_fs){
 				$('.frame_fs').addClass('caption_fs');
@@ -75,7 +74,6 @@
 
 	$(document.body).on('click', '.add_to_album' ,function(){
 		var result = $(this).data();
-		console.log(result);
 		// send data to add_image controller action
 		$('.active_sly .add_to_album').toggleClass('selected');
 		$.ajax({
@@ -247,7 +245,6 @@
 	// Event handler for fullscreen button
 	// -------------------------------------------------------------
 	$(document.body).on('click', '.fullscreen', function() {
-		console.log("clicked");
 		if (screenfull.enabled) {
 			var frame = $('.frame')[0];
 			sly.reload();
