@@ -46,7 +46,7 @@
             <% if session[:access_token] %>
               <li>
                 <select>
-                  <option>Choose an album</option>
+                  <option>Save to album</option>
                   <%= current_user.albums.reverse.each do |album| %>
 
                     <option value="<%= album.id %>"><%= album.title %></option>
