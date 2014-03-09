@@ -2,7 +2,7 @@
 ========
 Life's Slideshow
 
-[beam](http://beam-team.herokuapp.com/)
+[BEAM](http://beam-team.herokuapp.com/)
 
 Search Instagram by #hashtag or @username.  Click through the results or make it a fullscreen slideshow.
 
