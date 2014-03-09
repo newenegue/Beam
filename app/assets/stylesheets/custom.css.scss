@@ -97,6 +97,10 @@ body {
   margin: 0 auto;
 }
 
+btn-group.bootstrap-select {
+  margin-top: 3px;
+}
+
 #select_album {
 	padding-top: 10px;
 	color: #34495e;
@@ -562,4 +566,45 @@ img#avatar {
 	}
 }
 
+@media(max-width: 775px) {
 
+  input#search.form-control.nav_text{
+    width: 272px;
+    font-size: 13px;
+  }
+
+
+  img#user_avatar {
+    font-size: 13px;
+    width: 35px;
+    height: 35px;
+    margin-top:8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-form {
+    float:left;
+  }
+
+  .navbar-form .form-group {
+  margin-bottom: 5px;
+  float: left;
+
+  }
+
+  .navbar-form button.btn.btn-default {
+    margin-left: 8px;
+
+  }
+    img#user_avatar {
+    font-size: 13px;
+    width: 35px;
+    height: 35px;
+    margin-top:8px;
+    float:left;
+  }
+  p.navbar-text-dropdown-toggle {
+    margin-right:20px;
+  }
+}
