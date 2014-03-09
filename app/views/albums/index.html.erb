@@ -7,7 +7,7 @@
 						<%= album.images.count %>
 						<% if album.images.count > 5 %>
 						more than 5
-							<% album.images[-..-1].reverse.each do |image| %>
+							<% album.images[-5..-1].reverse.each do |image| %>
 								<%= image_tag image.ig_url, :class => "thumb" %>
 							<% end %>
 						<% else %>
