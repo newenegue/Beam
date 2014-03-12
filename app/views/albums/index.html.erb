@@ -7,8 +7,14 @@
 			
 				<div class="col-lg-8 col-md-8 col-sm-8" id="middle_col">
 					<a href="<%= album_url(album) %>">
-						<% album.images[0..4].each do |image| %>
-						<%= image_tag image.ig_url, :class => "thumb" %>
+						<% if album.images.count > 5 %>
+							<% album.images[-5..-1].reverse.each do |image| %>
+								<%= image_tag image.ig_url, :class => "thumb" %>
+							<% end %>
+						<% else %>
+							<% album.images.reverse.each do |image| %>
+							<%= image_tag image.ig_url, :class => "thumb" %>
+							<% end %>
 						<% end %>
 					</a>
 				

@@ -204,8 +204,14 @@
 					success: function(instagram_results) {
 						// prevent duplicates
 						pagination_url = instagram_results.pagination.next_url.substring(0, instagram_results.pagination.next_url.indexOf("&_="));
-						next_max_id = next_url.substring(next_url.indexOf("max_id=") + 7);
+						if(next_url.indexOf("max_id=") >= 0){
+							next_max_id = next_url.substring(next_url.indexOf("max_id=") + 7);
+						}
+						else if(next_url.indexOf("max_tag_id=") >= 0){
+							next_max_id = next_url.substring(next_url.indexOf("max_tag_id=") + 11, next_url.indexOf("&access_token="));
+						}
 						if( next_max_id === instagram_results.pagination.next_max_id) {
+							console.log("SAME");
 							next_url = next_url;
 						}
 						else {
